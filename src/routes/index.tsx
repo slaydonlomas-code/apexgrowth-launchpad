@@ -73,7 +73,7 @@ function Hero() {
           </a>
         </div>
         <div className="animate-fade-up mt-14 flex items-center justify-center gap-8 opacity-70">
-          <img src={logo} alt="ApexGrowth" className="h-10 w-auto" />
+          <Logo size={40} />
         </div>
       </div>
     </section>
