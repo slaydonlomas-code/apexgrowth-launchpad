@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
-import logo from "@/assets/logo.png";
+import { Logo } from "@/components/site/Logo";
 
 const links = [
   { href: "#services", label: "Services" },
@@ -27,8 +27,8 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8">
-        <a href="#top" className="flex items-center gap-2">
-          <img src={logo} alt="ApexGrowth" className="h-9 w-auto md:h-10" />
+        <a href="#top" className="flex items-center gap-2" aria-label="ApexGrowth home">
+          <Logo size={36} />
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
