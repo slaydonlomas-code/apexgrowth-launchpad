@@ -9,7 +9,7 @@ import { Header } from "@/components/site/Header";
 import { Reveal } from "@/components/site/Reveal";
 import { Estimator } from "@/components/site/Estimator";
 import { ContactForm } from "@/components/site/ContactForm";
-import logo from "@/assets/logo.png";
+import { Logo } from "@/components/site/Logo";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -490,7 +490,8 @@ function Footer() {
     <footer className="border-t border-border bg-background py-14">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-4 md:px-8">
         <div className="md:col-span-2">
-          <img src={logo} alt="ApexGrowth" className="h-10 w-auto" />
+          <Logo size={40} />
+
           <p className="mt-4 max-w-sm text-sm text-muted-foreground">
             Premium websites and lead generation systems for local and service-based businesses. Built for growth, not just launch.
           </p>
