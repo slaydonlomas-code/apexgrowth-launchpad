@@ -1,38 +1,45 @@
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
-import { submitContact } from "@/lib/contact.functions";
 import { Loader2, Send } from "lucide-react";
 
 const budgets = ["Under $1K", "$1K–$3K", "$3K–$6K", "$6K–$15K", "$15K+"];
 
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnjenwnj";
+
 export function ContactForm() {
-  const submit = useServerFn(submitContact);
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (loading) return;
-    const fd = new FormData(e.currentTarget);
-    const payload = {
-      name: String(fd.get("name") || ""),
-      email: String(fd.get("email") || ""),
-      phone: String(fd.get("phone") || ""),
-      business: String(fd.get("business") || ""),
-      website: String(fd.get("website") || ""),
-      budget: String(fd.get("budget") || ""),
-      details: String(fd.get("details") || ""),
-    };
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     setLoading(true);
     try {
-      await submit({ data: payload });
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: fd,
+      });
+      if (!res.ok) {
+        let msg = "Submission failed. Please try again or call us directly.";
+        try {
+          const data = (await res.json()) as { errors?: Array<{ message?: string }> };
+          if (data?.errors?.length) {
+            msg = data.errors.map((x) => x.message).filter(Boolean).join(", ") || msg;
+          }
+        } catch {
+          // ignore
+        }
+        throw new Error(msg);
+      }
       setDone(true);
-      toast.success("Thank you! We received your request and will contact you shortly.");
-      (e.target as HTMLFormElement).reset();
+      toast.success("Thank you! Your request has been received. We'll be in touch shortly.");
+      form.reset();
     } catch (err) {
-      console.error(err);
-      toast.error("Something went wrong sending your message. Please call or email us directly.");
+      const message = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      toast.error(message);
     } finally {
       setLoading(false);
     }
@@ -44,9 +51,9 @@ export function ContactForm() {
         <div className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-gold-gradient text-primary-foreground">
           <Send className="h-6 w-6" />
         </div>
-        <h3 className="text-2xl">Thank you.</h3>
+        <h3 className="text-2xl">Thank you!</h3>
         <p className="mt-2 text-muted-foreground">
-          We received your request and will contact you shortly. Want to lock in a time now?
+          Your request has been received. We'll be in touch shortly. Want to lock in a time now?
         </p>
         <a
           href="https://calendly.com/slaydon-lomas/30min"
@@ -60,7 +67,12 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-4 rounded-3xl border border-border bg-card/60 p-6 shadow-elegant md:p-10">
+    <form
+      onSubmit={onSubmit}
+      action={FORMSPREE_ENDPOINT}
+      method="POST"
+      className="grid gap-4 rounded-3xl border border-border bg-card/60 p-6 shadow-elegant md:p-10"
+    >
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Name" name="name" required />
         <Field label="Email" name="email" type="email" required />
@@ -91,6 +103,9 @@ export function ContactForm() {
           className="w-full resize-y rounded-lg border border-input bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-primary"
         />
       </div>
+      {/* Honeypot for spam bots */}
+      <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" style={{ display: "none" }} />
+      <input type="hidden" name="_subject" value="New ApexGrowth lead inquiry" />
       <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-muted-foreground">By submitting you consent to be contacted about your inquiry.</p>
         <button
