@@ -72,15 +72,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "ApexGrowth — Premium Websites & Lead Generation for Local Business" },
       { name: "description", content: "ApexGrowth builds high-converting websites, lead generation systems, and growth automation for local and service-based businesses." },
       { name: "author", content: "ApexGrowth" },
-      { property: "og:title", content: "ApexGrowth — Premium Websites & Lead Generation" },
-      { property: "og:description", content: "Websites, lead capture, CRM, and automation built to grow local businesses." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/og-image.jpg" },
       { property: "og:site_name", content: "ApexGrowth" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "ApexGrowth — Premium Websites & Lead Generation" },
-      { name: "twitter:description", content: "Websites, lead capture, CRM, and automation built to grow local businesses." },
-      { name: "twitter:image", content: "/og-image.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -90,7 +84,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "ApexGrowth",
+          url: "/",
+          logo: "/logo.png",
+          email: "apexgrowthsolutions@gmail.com",
+          telephone: "+1-337-385-3084",
+          sameAs: [] as string[],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "ApexGrowth",
+          url: "/",
+        }),
+      },
+    ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
