@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { toast } from "sonner";
 import { Loader2, Send } from "lucide-react";
 
@@ -9,6 +9,8 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnjenwnj";
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const uid = useId();
+  const id = (n: string) => `${uid}-${n}`;
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,14 +76,15 @@ export function ContactForm() {
       className="grid gap-4 rounded-3xl border border-border bg-card/60 p-6 shadow-elegant md:p-10"
     >
       <div className="grid gap-4 md:grid-cols-2">
-        <Field label="Name" name="name" required />
-        <Field label="Email" name="email" type="email" required />
-        <Field label="Phone number" name="phone" type="tel" required />
-        <Field label="Business name" name="business" />
-        <Field label="Current website" name="website" placeholder="https://" />
+        <Field id={id("name")} label="Name" name="name" required />
+        <Field id={id("email")} label="Email" name="email" type="email" required />
+        <Field id={id("phone")} label="Phone number" name="phone" type="tel" required />
+        <Field id={id("business")} label="Business name" name="business" />
+        <Field id={id("website")} label="Current website" name="website" placeholder="https://" />
         <div>
-          <label className="mb-1.5 block text-xs uppercase tracking-[0.15em] text-muted-foreground">Estimated budget</label>
+          <label htmlFor={id("budget")} className="mb-1.5 block text-xs uppercase tracking-[0.15em] text-muted-foreground">Estimated budget</label>
           <select
+            id={id("budget")}
             name="budget"
             className="w-full rounded-lg border border-input bg-background/60 px-4 py-3 text-sm outline-none transition focus:border-primary"
             defaultValue=""
@@ -92,8 +95,9 @@ export function ContactForm() {
         </div>
       </div>
       <div>
-        <label className="mb-1.5 block text-xs uppercase tracking-[0.15em] text-muted-foreground">Project details</label>
+        <label htmlFor={id("details")} className="mb-1.5 block text-xs uppercase tracking-[0.15em] text-muted-foreground">Project details</label>
         <textarea
+          id={id("details")}
           name="details"
           required
           rows={5}
@@ -120,13 +124,14 @@ export function ContactForm() {
   );
 }
 
-function Field({ label, name, type = "text", required, placeholder }: { label: string; name: string; type?: string; required?: boolean; placeholder?: string }) {
+function Field({ id, label, name, type = "text", required, placeholder }: { id: string; label: string; name: string; type?: string; required?: boolean; placeholder?: string }) {
   return (
     <div>
-      <label className="mb-1.5 block text-xs uppercase tracking-[0.15em] text-muted-foreground">
+      <label htmlFor={id} className="mb-1.5 block text-xs uppercase tracking-[0.15em] text-muted-foreground">
         {label}{required && <span className="ml-1 text-primary">*</span>}
       </label>
       <input
+        id={id}
         name={name}
         type={type}
         required={required}

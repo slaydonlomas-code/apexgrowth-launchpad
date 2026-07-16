@@ -10,20 +10,47 @@ import { Reveal } from "@/components/site/Reveal";
 import { Estimator } from "@/components/site/Estimator";
 import { ContactForm } from "@/components/site/ContactForm";
 import { Logo } from "@/components/site/Logo";
+import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/")({
   component: Home,
-  head: () => ({
-    meta: [
-      { title: "ApexGrowth — Websites & Lead Generation for Local Businesses" },
-      { name: "description", content: "Premium websites, lead capture systems, CRM setup, and growth automation designed to turn visitors into customers." },
-      { property: "og:title", content: "ApexGrowth — Premium Websites & Lead Generation" },
-      { property: "og:description", content: "Premium websites, lead capture systems, CRM setup, and growth automation designed to turn visitors into customers." },
-      { property: "og:image", content: "/og-image.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
+  loader: async () => ({ origin: await getRequestOrigin() }),
+  head: ({ loaderData }) => {
+    const origin = loaderData?.origin ?? "";
+    const ogImage = `${origin}/og-image.jpg`;
+    const title = "ApexGrowth — Websites & Lead Generation for Local Businesses";
+    const description = "Premium websites, lead capture systems, CRM setup, and growth automation designed to turn visitors into customers.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: `${origin}/` },
+        { property: "og:image", content: ogImage },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+        { name: "twitter:image", content: ogImage },
+      ],
+      links: [{ rel: "canonical", href: `${origin}/` }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          }),
+        },
+      ],
+    };
+  },
 });
+
 
 function Home() {
   return (
