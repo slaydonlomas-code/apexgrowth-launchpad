@@ -1,0 +1,15 @@
+# ApexGrowth
+
+> Premium web design and lead generation agency helping local and service-based businesses grow with high-converting websites, lead capture systems, CRM setup, and automation.
+
+ApexGrowth partners with local businesses to design premium websites, install lead generation systems, and automate follow-up — end to end. Services include website design and redesign, lead generation, CRM setup, booking systems, local SEO, email/SMS automation, review generation, paid ads management, AI chatbots, and analytics.
+
+## Pages
+
+- [Home](/): Overview of services, pricing, process, estimator, and contact.
+
+## Contact
+
+- Phone: 337-385-3084
+- Email: apexgrowthsolutions@gmail.com
+- Book a call: https://calendly.com/slaydon-lomas/30min
