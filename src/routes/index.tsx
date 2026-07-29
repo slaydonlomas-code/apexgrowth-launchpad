@@ -306,7 +306,7 @@ function Industries() {
           {industries.map((it, i) => (
             <Reveal key={it.label} delay={(i % 5) * 60}>
               <div className="flex h-full items-center gap-3 rounded-xl border border-border bg-card/40 px-4 py-4 transition hover:border-primary/40">
-                <it.icon className="h-4.5 w-4.5 shrink-0 text-primary" />
+                <it.icon className="h-4 w-4 shrink-0 text-primary" />
                 <span className="text-sm text-foreground/90">{it.label}</span>
               </div>
             </Reveal>
