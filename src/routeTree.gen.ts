@@ -13,6 +13,7 @@ import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-condi
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as GrowthServicesRouteImport } from './routes/growth-services'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -42,6 +43,11 @@ const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
 const IndustriesRoute = IndustriesRouteImport.update({
   id: '/industries',
   path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrowthServicesRoute = GrowthServicesRouteImport.update({
+  id: '/growth-services',
+  path: '/growth-services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DisclaimerRoute = DisclaimerRouteImport.update({
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/growth-services': typeof GrowthServicesRoute
   '/industries': typeof IndustriesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/growth-services': typeof GrowthServicesRoute
   '/industries': typeof IndustriesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -137,6 +145,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
+  '/growth-services': typeof GrowthServicesRoute
   '/industries': typeof IndustriesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -155,6 +164,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/growth-services'
     | '/industries'
     | '/privacy-policy'
     | '/sitemap.xml'
@@ -170,6 +180,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/growth-services'
     | '/industries'
     | '/privacy-policy'
     | '/sitemap.xml'
@@ -186,6 +197,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
+    | '/growth-services'
     | '/industries'
     | '/privacy-policy'
     | '/sitemap.xml'
@@ -203,6 +215,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
+  GrowthServicesRoute: typeof GrowthServicesRoute
   IndustriesRoute: typeof IndustriesRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -237,6 +250,13 @@ declare module '@tanstack/react-router' {
       path: '/industries'
       fullPath: '/industries'
       preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/growth-services': {
+      id: '/growth-services'
+      path: '/growth-services'
+      fullPath: '/growth-services'
+      preLoaderRoute: typeof GrowthServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/disclaimer': {
@@ -335,6 +355,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
+  GrowthServicesRoute: GrowthServicesRoute,
   IndustriesRoute: IndustriesRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
