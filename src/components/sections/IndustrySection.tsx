@@ -11,7 +11,9 @@ export function IndustrySection({ industry }: { industry: Industry }) {
     >
       <Reveal>
         <div className="max-w-2xl">
-          <div className="text-xs uppercase tracking-[0.2em] text-gold-soft">{industry.name}</div>
+          <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+            {industry.name}
+          </div>
           <h3 className="mt-3 text-2xl md:text-4xl">{industry.headline}</h3>
         </div>
       </Reveal>

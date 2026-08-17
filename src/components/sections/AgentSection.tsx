@@ -14,7 +14,9 @@ export function AgentSection({ agent, link }: { agent: Agent; link?: string }) {
       <Reveal>
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <div className="text-xs uppercase tracking-[0.2em] text-gold-soft">{agent.tagline}</div>
+            <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+              {agent.tagline}
+            </div>
             <h3 className="mt-3 text-2xl md:text-4xl">{agent.name}</h3>
             <p className="mt-4 leading-relaxed text-muted-foreground">{agent.problem}</p>
             <p className="mt-3 leading-relaxed text-foreground/85">{agent.summary}</p>
@@ -33,7 +35,7 @@ export function AgentSection({ agent, link }: { agent: Agent; link?: string }) {
         <WorkflowFlow steps={agent.workflow} title="How it works" />
       </div>
       <div className="mt-10">
-        <div className="mb-5 text-xs uppercase tracking-[0.2em] text-gold-soft">
+        <div className="mb-5 text-xs font-medium uppercase tracking-[0.2em] text-primary">
           What it handles
         </div>
         <CapabilityList items={agent.capabilities} columns={2} />

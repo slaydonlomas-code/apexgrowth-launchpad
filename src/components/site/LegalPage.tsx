@@ -18,20 +18,20 @@ export function LegalPage({
       <main>
         <section className="bg-hero grain border-b border-border pt-32 pb-16 md:pt-40 md:pb-20">
           <div className="mx-auto max-w-3xl px-5 md:px-8">
-            <div className="text-xs uppercase tracking-[0.2em] text-gold-soft">Legal</div>
+            <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">Legal</div>
             <h1 className="mt-3 text-4xl md:text-5xl">{title}</h1>
             <p className="mt-4 text-sm text-muted-foreground">Last updated: {updated}</p>
           </div>
         </section>
         <section className="py-16 md:py-20">
           <div className="mx-auto max-w-3xl px-5 md:px-8">
-            <div className="mb-10 rounded-2xl border border-primary/30 bg-card/50 p-5 text-sm leading-relaxed text-muted-foreground">
+            <div className="mb-12 rounded-2xl border border-primary/25 bg-card p-6 text-sm leading-relaxed text-muted-foreground shadow-elegant">
               <strong className="text-foreground">Please note:</strong> This page is a general
               template maintained by ApexGrowth. It is not legal advice and should be reviewed by a
               qualified attorney before publication. Bracketed items such as [Company Legal Name]
               are placeholders that still need company-specific information.
             </div>
-            <div className="space-y-10">{children}</div>
+            <div className="space-y-12">{children}</div>
           </div>
         </section>
       </main>
@@ -44,8 +44,8 @@ export function LegalPage({
 export function LegalSection({ heading, children }: { heading: string; children: ReactNode }) {
   return (
     <section>
-      <h2 className="text-2xl">{heading}</h2>
-      <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2">
+      <h2 className="text-xl text-foreground md:text-2xl">{heading}</h2>
+      <div className="mt-4 max-w-prose space-y-4 text-[0.95rem] leading-7 text-muted-foreground [&_a]:font-medium [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4">
         {children}
       </div>
     </section>

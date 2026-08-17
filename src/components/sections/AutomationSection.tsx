@@ -11,7 +11,7 @@ export function AutomationSection({ automation }: { automation: Automation }) {
     >
       <Reveal>
         <div className="max-w-2xl">
-          <div className="text-xs uppercase tracking-[0.2em] text-gold-soft">
+          <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
             {automation.tagline}
           </div>
           <h3 className="mt-3 text-2xl md:text-4xl">{automation.name}</h3>
@@ -23,7 +23,7 @@ export function AutomationSection({ automation }: { automation: Automation }) {
         <WorkflowFlow steps={automation.workflow} title="How it works" />
       </div>
       <div className="mt-10">
-        <div className="mb-5 text-xs uppercase tracking-[0.2em] text-gold-soft">
+        <div className="mb-5 text-xs font-medium uppercase tracking-[0.2em] text-primary">
           What it includes
         </div>
         <CapabilityList items={automation.capabilities} columns={2} />

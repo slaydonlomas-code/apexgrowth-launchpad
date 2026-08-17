@@ -1,5 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageShell, PageHero, Section, SectionHeading, CtaBand, PrimaryCta, SecondaryCta } from "@/components/site/PageShell";
+import {
+  PageShell,
+  PageHero,
+  Section,
+  SectionHeading,
+  CtaBand,
+  PrimaryCta,
+  SecondaryCta,
+} from "@/components/site/PageShell";
 import { CoverageTimeline } from "@/components/sections/CoverageTimeline";
 import { WorkflowFlow } from "@/components/sections/WorkflowFlow";
 import { CapabilityList } from "@/components/sections/CapabilityList";
@@ -16,12 +24,30 @@ const DESCRIPTION =
   "An AI receptionist that answers overflow, after-hours, and weekend calls in your business's voice, captures the details you need, and escalates real emergencies to a person.";
 
 const FAQS: FaqItem[] = [
-  { q: "Does it sound robotic?", a: "It is a natural-sounding voice system, and we configure the greeting, tone, and phrasing with you. It will not claim to be a human being if a caller asks directly — pretending damages trust far more than being an assistant does." },
-  { q: "What happens if it cannot answer a question?", a: "It follows the escalation rules you set. That can mean transferring to a person, taking a message with the specific details you asked for, or alerting your on-call contact immediately for emergencies." },
-  { q: "Do we control what it says?", a: "Yes. The greeting, intake questions, service area rules, hours, escalation triggers, and booking rules are all approved by you before launch and can be changed afterward." },
-  { q: "Does it replace our office staff?", a: "No. It covers the hours and overflow no staff can cover. Your team keeps the relationships, the judgment calls, and the conversations that need a person." },
-  { q: "Will it answer every call?", a: "You choose. Most businesses ring their own line first and let the system pick up only when nobody answers, or during defined after-hours windows." },
-  { q: "How long does setup take?", a: "It depends on how complex your call handling and escalation rules are. We scope the timeline during your free AI audit before any commitment." },
+  {
+    q: "Does it sound robotic?",
+    a: "It is a natural-sounding voice system, and we configure the greeting, tone, and phrasing with you. It will not claim to be a human being if a caller asks directly — pretending damages trust far more than being an assistant does.",
+  },
+  {
+    q: "What happens if it cannot answer a question?",
+    a: "It follows the escalation rules you set. That can mean transferring to a person, taking a message with the specific details you asked for, or alerting your on-call contact immediately for emergencies.",
+  },
+  {
+    q: "Do we control what it says?",
+    a: "Yes. The greeting, intake questions, service area rules, hours, escalation triggers, and booking rules are all approved by you before launch and can be changed afterward.",
+  },
+  {
+    q: "Does it replace our office staff?",
+    a: "No. It covers the hours and overflow no staff can cover. Your team keeps the relationships, the judgment calls, and the conversations that need a person.",
+  },
+  {
+    q: "Will it answer every call?",
+    a: "You choose. Most businesses ring their own line first and let the system pick up only when nobody answers, or during defined after-hours windows.",
+  },
+  {
+    q: "How long does setup take?",
+    a: "It depends on how complex your call handling and escalation rules are. We scope the timeline during your free AI audit before any commitment.",
+  },
 ];
 
 export const Route = createFileRoute("/ai-employees/ai-receptionist")({
@@ -61,8 +87,18 @@ export const Route = createFileRoute("/ai-employees/ai-receptionist")({
             "@type": "BreadcrumbList",
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: `${origin}/` },
-              { "@type": "ListItem", position: 2, name: "AI Employees", item: `${origin}/ai-employees` },
-              { "@type": "ListItem", position: 3, name: "AI Receptionist", item: `${origin}/ai-employees/ai-receptionist` },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "AI Employees",
+                item: `${origin}/ai-employees`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "AI Receptionist",
+                item: `${origin}/ai-employees/ai-receptionist`,
+              },
             ],
           }),
         },
@@ -73,9 +109,18 @@ export const Route = createFileRoute("/ai-employees/ai-receptionist")({
 });
 
 const GAPS = [
-  { t: "Two calls at once", c: "One person can only be on one call. The second caller hears voicemail — or nothing." },
-  { t: "Lunch and drive time", c: "The phone still rings while your office is eating and your techs are between jobs." },
-  { t: "Evenings and weekends", c: "A large share of high-intent calls come in when no office is staffed." },
+  {
+    t: "Two calls at once",
+    c: "One person can only be on one call. The second caller hears voicemail — or nothing.",
+  },
+  {
+    t: "Lunch and drive time",
+    c: "The phone still rings while your office is eating and your techs are between jobs.",
+  },
+  {
+    t: "Evenings and weekends",
+    c: "A large share of high-intent calls come in when no office is staffed.",
+  },
   { t: "Sick days and turnover", c: "Coverage should not collapse because one person is out." },
 ];
 
@@ -87,7 +132,11 @@ function Page() {
         title="Your receptionist shouldn't have to work 24/7"
         highlight="for your business to answer 24/7."
         intro="An AI receptionist answers the calls your team cannot get to — overflow, lunch breaks, evenings, weekends, holidays — using your greeting, your questions, and your escalation rules."
-        breadcrumbs={[{ label: "Home", to: "/" }, { label: "AI Employees", to: "/ai-employees" }, { label: "AI Receptionist" }]}
+        breadcrumbs={[
+          { label: "Home", to: "/" },
+          { label: "AI Employees", to: "/ai-employees" },
+          { label: "AI Receptionist" },
+        ]}
       />
 
       <Section>
@@ -96,12 +145,15 @@ function Page() {
           title="The problem is coverage, not the employee."
           intro="Your office staff is not failing. There are simply more hours in the week than any person can answer a phone."
         />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 border-t border-border">
           {GAPS.map((g, i) => (
-            <Reveal key={g.t} delay={(i % 4) * 70}>
-              <div className="h-full rounded-2xl border border-border bg-card/40 p-6">
-                <div className="text-base text-foreground">{g.t}</div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{g.c}</p>
+            <Reveal key={g.t} delay={(i % 4) * 60}>
+              <div className="grid items-start gap-x-10 gap-y-2 border-b border-border py-6 md:grid-cols-[auto_minmax(0,16rem)_1fr] md:items-center">
+                <span className="text-xs tracking-[0.16em] text-primary/70">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="text-base font-semibold text-foreground">{g.t}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{g.c}</p>
               </div>
             </Reveal>
           ))}
@@ -113,7 +165,10 @@ function Page() {
       </Section>
 
       <Section tone="muted">
-        <SectionHeading eyebrow="Coverage" title="A normal week, with and without digital coverage." />
+        <SectionHeading
+          eyebrow="Coverage"
+          title="A normal week, with and without digital coverage."
+        />
         <div className="mt-12">
           <CoverageTimeline />
         </div>
