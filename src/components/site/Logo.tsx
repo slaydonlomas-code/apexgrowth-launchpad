@@ -7,7 +7,7 @@ type Props = {
 /**
  * ApexGrowth wordmark logo.
  * - Transparent background (pure SVG + text)
- * - "Apex" in white, "Growth" in gold
+ * - "Apex" in deep navy, "Growth" in gold
  * - Stylized mountain peak icon in gold on the left
  */
 export function Logo({ className, size = 40 }: Props) {
@@ -60,7 +60,7 @@ export function Logo({ className, size = 40 }: Props) {
           whiteSpace: "nowrap",
         }}
       >
-        <span style={{ color: "#FFFFFF" }}>Apex</span>
+        <span style={{ color: "var(--ink)" }}>Apex</span>
         <span
           style={{
             background:
