@@ -9,11 +9,36 @@ export interface CoverageRow {
 }
 
 const DEFAULT_ROWS: CoverageRow[] = [
-  { time: "8:00 AM", scenario: "Two calls come in at once", traditional: "Second caller hits voicemail", digital: "Both calls answered, details captured" },
-  { time: "12:15 PM", scenario: "Lunch break", traditional: "Phone rings out", digital: "Call answered and qualified" },
-  { time: "3:40 PM", scenario: "Office manager is on another line", traditional: "Caller waits or hangs up", digital: "Overflow call picked up instantly" },
-  { time: "7:45 PM", scenario: "After hours request", traditional: "Voicemail until tomorrow", digital: "Request logged, follow-up text sent" },
-  { time: "Saturday", scenario: "Weekend emergency", traditional: "No coverage", digital: "Urgency screened, on-call person alerted" },
+  {
+    time: "8:00 AM",
+    scenario: "Two calls come in at once",
+    traditional: "Second caller hits voicemail",
+    digital: "Both calls answered, details captured",
+  },
+  {
+    time: "12:15 PM",
+    scenario: "Lunch break",
+    traditional: "Phone rings out",
+    digital: "Call answered and qualified",
+  },
+  {
+    time: "3:40 PM",
+    scenario: "Office manager is on another line",
+    traditional: "Caller waits or hangs up",
+    digital: "Overflow call picked up instantly",
+  },
+  {
+    time: "7:45 PM",
+    scenario: "After hours request",
+    traditional: "Voicemail until tomorrow",
+    digital: "Request logged, follow-up text sent",
+  },
+  {
+    time: "Saturday",
+    scenario: "Weekend emergency",
+    traditional: "No coverage",
+    digital: "Urgency screened, on-call person alerted",
+  },
 ];
 
 export function CoverageTimeline({ rows = DEFAULT_ROWS }: { rows?: CoverageRow[] }) {
@@ -36,10 +61,15 @@ export function CoverageTimeline({ rows = DEFAULT_ROWS }: { rows?: CoverageRow[]
                   aria-hidden="true"
                 />
                 <div className="text-sm font-medium text-foreground">{r.time}</div>
-                <div className="mt-1 text-xs leading-relaxed text-muted-foreground">{r.scenario}</div>
+                <div className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                  {r.scenario}
+                </div>
               </div>
               <div className="flex items-start gap-3 px-6 py-4 md:py-6">
-                <X className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground/60" aria-hidden="true" />
+                <X
+                  className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground/60"
+                  aria-hidden="true"
+                />
                 <span className="text-sm text-muted-foreground">{r.traditional}</span>
               </div>
               <div className="flex items-start gap-3 border-t border-border bg-primary/[0.03] px-6 py-4 md:border-l md:border-t-0 md:py-6">

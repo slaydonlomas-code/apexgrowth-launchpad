@@ -7,7 +7,10 @@ import type { Agent } from "@/content/agents";
 
 export function AgentSection({ agent, link }: { agent: Agent; link?: string }) {
   return (
-    <div id={agent.slug} className="scroll-mt-24 border-t border-border py-16 first:border-t-0 first:pt-0 md:py-20">
+    <div
+      id={agent.slug}
+      className="scroll-mt-24 border-t border-border py-16 first:border-t-0 first:pt-0 md:py-20"
+    >
       <Reveal>
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
@@ -30,7 +33,9 @@ export function AgentSection({ agent, link }: { agent: Agent; link?: string }) {
         <WorkflowFlow steps={agent.workflow} title="How it works" />
       </div>
       <div className="mt-10">
-        <div className="mb-5 text-xs uppercase tracking-[0.2em] text-gold-soft">What it handles</div>
+        <div className="mb-5 text-xs uppercase tracking-[0.2em] text-gold-soft">
+          What it handles
+        </div>
         <CapabilityList items={agent.capabilities} columns={2} />
       </div>
     </div>

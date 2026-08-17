@@ -39,21 +39,13 @@ export function Logo({ className, size = 40 }: Props) {
           </linearGradient>
         </defs>
         {/* Main peak */}
-        <path
-          d="M6 54 L28 14 L42 40 L36 40 L28 26 L14 54 Z"
-          fill="url(#apexGold)"
-        />
+        <path d="M6 54 L28 14 L42 40 L36 40 L28 26 L14 54 Z" fill="url(#apexGold)" />
         {/* Secondary smaller peak */}
-        <path
-          d="M32 54 L44 32 L58 54 Z"
-          fill="url(#apexGold)"
-          opacity="0.9"
-        />
+        <path d="M32 54 L44 32 L58 54 Z" fill="url(#apexGold)" opacity="0.9" />
       </svg>
       <span
         style={{
-          fontFamily:
-            "'Fraunces', ui-serif, Georgia, 'Times New Roman', serif",
+          fontFamily: "'Fraunces', ui-serif, Georgia, 'Times New Roman', serif",
           fontWeight: 600,
           fontSize: Math.round(size * 0.62),
           letterSpacing: "-0.01em",
@@ -63,8 +55,7 @@ export function Logo({ className, size = 40 }: Props) {
         <span style={{ color: "var(--ink)" }}>Apex</span>
         <span
           style={{
-            background:
-              "linear-gradient(135deg, #E6C878 0%, #C69A46 50%, #B0822E 100%)",
+            background: "linear-gradient(135deg, #E6C878 0%, #C69A46 50%, #B0822E 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
             color: "transparent",

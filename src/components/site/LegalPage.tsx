@@ -3,7 +3,15 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CookieBanner } from "@/components/site/CookieBanner";
 
-export function LegalPage({ title, updated, children }: { title: string; updated: string; children: ReactNode }) {
+export function LegalPage({
+  title,
+  updated,
+  children,
+}: {
+  title: string;
+  updated: string;
+  children: ReactNode;
+}) {
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
       <Header />
@@ -18,9 +26,10 @@ export function LegalPage({ title, updated, children }: { title: string; updated
         <section className="py-16 md:py-20">
           <div className="mx-auto max-w-3xl px-5 md:px-8">
             <div className="mb-10 rounded-2xl border border-primary/30 bg-card/50 p-5 text-sm leading-relaxed text-muted-foreground">
-              <strong className="text-foreground">Please note:</strong> This page is a general template maintained by ApexGrowth. It is
-              not legal advice and should be reviewed by a qualified attorney before publication. Bracketed items such as
-              [Company Legal Name] are placeholders that still need company-specific information.
+              <strong className="text-foreground">Please note:</strong> This page is a general
+              template maintained by ApexGrowth. It is not legal advice and should be reviewed by a
+              qualified attorney before publication. Bracketed items such as [Company Legal Name]
+              are placeholders that still need company-specific information.
             </div>
             <div className="space-y-10">{children}</div>
           </div>

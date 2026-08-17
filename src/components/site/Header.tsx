@@ -86,16 +86,18 @@ export function Header() {
       {open && (
         <div id="mobile-nav" className="border-t border-border bg-background lg:hidden">
           <nav aria-label="Mobile" className="flex flex-col gap-1 p-5">
-            {[{ href: "/", label: "Home" }, ...links, { href: "/contact", label: "Contact" }].map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-2 py-3 text-base font-medium text-foreground transition hover:bg-muted"
-              >
-                {l.label}
-              </a>
-            ))}
+            {[{ href: "/", label: "Home" }, ...links, { href: "/contact", label: "Contact" }].map(
+              (l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-2 py-3 text-base font-medium text-foreground transition hover:bg-muted"
+                >
+                  {l.label}
+                </a>
+              ),
+            )}
             <a
               href={CONTACT.phoneHref}
               className="flex items-center gap-2 px-2 py-3 text-sm text-muted-foreground"

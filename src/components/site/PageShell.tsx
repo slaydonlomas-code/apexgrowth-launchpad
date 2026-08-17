@@ -90,12 +90,17 @@ export function PageHero({
       </div>
       <div className="mx-auto max-w-5xl px-5 md:px-8">
         {breadcrumbs && (
-          <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+          <nav
+            aria-label="Breadcrumb"
+            className="mb-6 flex flex-wrap items-center gap-1 text-xs text-muted-foreground"
+          >
             {breadcrumbs.map((b, i) => (
               <span key={b.label} className="flex items-center gap-1">
                 {i > 0 && <ChevronRight className="h-3 w-3" />}
                 {b.to ? (
-                  <Link to={b.to as never} className="transition hover:text-foreground">{b.label}</Link>
+                  <Link to={b.to as never} className="transition hover:text-foreground">
+                    {b.label}
+                  </Link>
                 ) : (
                   <span className="text-foreground/80">{b.label}</span>
                 )}
@@ -107,8 +112,17 @@ export function PageHero({
         <h1 className="animate-fade-up mt-4 max-w-3xl text-4xl leading-[1.08] md:text-5xl lg:text-6xl">
           {title} {highlight && <span className="text-gradient-gold">{highlight}</span>}
         </h1>
-        <p className="animate-fade-up mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{intro}</p>
-        <div className="animate-fade-up mt-9 flex flex-col gap-3 sm:flex-row">{children ?? <><PrimaryCta location="hero" /><SecondaryCta location="hero" /></>}</div>
+        <p className="animate-fade-up mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          {intro}
+        </p>
+        <div className="animate-fade-up mt-9 flex flex-col gap-3 sm:flex-row">
+          {children ?? (
+            <>
+              <PrimaryCta location="hero" />
+              <SecondaryCta location="hero" />
+            </>
+          )}
+        </div>
       </div>
     </section>
   );

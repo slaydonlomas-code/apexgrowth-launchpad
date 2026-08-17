@@ -22,10 +22,16 @@ export function FaqList({ items }: { items: FaqItem[] }) {
               aria-expanded={isOpen}
             >
               <span className="text-base font-medium text-foreground">{f.q}</span>
-              <ChevronDown className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform ${isOpen ? "rotate-180 text-primary" : ""}`} />
+              <ChevronDown
+                className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform ${isOpen ? "rotate-180 text-primary" : ""}`}
+              />
             </button>
-            <div className={`grid overflow-hidden transition-all duration-300 ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-              <div className="min-h-0 px-6 pb-5 text-sm leading-relaxed text-muted-foreground">{f.a}</div>
+            <div
+              className={`grid overflow-hidden transition-all duration-300 ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+            >
+              <div className="min-h-0 px-6 pb-5 text-sm leading-relaxed text-muted-foreground">
+                {f.a}
+              </div>
             </div>
           </div>
         );
@@ -34,7 +40,15 @@ export function FaqList({ items }: { items: FaqItem[] }) {
   );
 }
 
-export function FaqSection({ items, eyebrow = "Frequently asked", title = "Questions, answered." }: { items: FaqItem[]; eyebrow?: string; title?: string }) {
+export function FaqSection({
+  items,
+  eyebrow = "Frequently asked",
+  title = "Questions, answered.",
+}: {
+  items: FaqItem[];
+  eyebrow?: string;
+  title?: string;
+}) {
   return (
     <section id="faq" className="scroll-mt-24 border-y border-border bg-muted/40 py-20 md:py-28">
       <div className="mx-auto max-w-3xl px-5 md:px-8">
