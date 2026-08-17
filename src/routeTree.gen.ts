@@ -15,6 +15,7 @@ import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AutomationsRouteImport } from './routes/automations'
 import { Route as AiEmployeesRouteImport } from './routes/ai-employees'
 import { Route as AiAuditRouteImport } from './routes/ai-audit'
 import { Route as AccessibilityStatementRouteImport } from './routes/accessibility-statement'
@@ -51,6 +52,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AutomationsRoute = AutomationsRouteImport.update({
+  id: '/automations',
+  path: '/automations',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiEmployeesRoute = AiEmployeesRouteImport.update({
   id: '/ai-employees',
   path: '/ai-employees',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/accessibility-statement': typeof AccessibilityStatementRoute
   '/ai-audit': typeof AiAuditRoute
   '/ai-employees': typeof AiEmployeesRouteWithChildren
+  '/automations': typeof AutomationsRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accessibility-statement': typeof AccessibilityStatementRoute
   '/ai-audit': typeof AiAuditRoute
+  '/automations': typeof AutomationsRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -108,6 +116,7 @@ export interface FileRoutesById {
   '/accessibility-statement': typeof AccessibilityStatementRoute
   '/ai-audit': typeof AiAuditRoute
   '/ai-employees': typeof AiEmployeesRouteWithChildren
+  '/automations': typeof AutomationsRoute
   '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
@@ -123,6 +132,7 @@ export interface FileRouteTypes {
     | '/accessibility-statement'
     | '/ai-audit'
     | '/ai-employees'
+    | '/automations'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
@@ -135,6 +145,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accessibility-statement'
     | '/ai-audit'
+    | '/automations'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
@@ -148,6 +159,7 @@ export interface FileRouteTypes {
     | '/accessibility-statement'
     | '/ai-audit'
     | '/ai-employees'
+    | '/automations'
     | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
@@ -162,6 +174,7 @@ export interface RootRouteChildren {
   AccessibilityStatementRoute: typeof AccessibilityStatementRoute
   AiAuditRoute: typeof AiAuditRoute
   AiEmployeesRoute: typeof AiEmployeesRouteWithChildren
+  AutomationsRoute: typeof AutomationsRoute
   ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/automations': {
+      id: '/automations'
+      path: '/automations'
+      fullPath: '/automations'
+      preLoaderRoute: typeof AutomationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ai-employees': {
@@ -269,6 +289,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccessibilityStatementRoute: AccessibilityStatementRoute,
   AiAuditRoute: AiAuditRoute,
   AiEmployeesRoute: AiEmployeesRouteWithChildren,
+  AutomationsRoute: AutomationsRoute,
   ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
