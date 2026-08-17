@@ -64,13 +64,16 @@ Split out later, only when a section has enough unique proof/content: `/ai-emplo
 
 **/automations/** — Missed-call text-back first and most prominent (with contractor context: on a roof, driving, inside a home, on equipment), then estimate follow-up, lead reactivation (permission-aware, non-spam), review automation (no gating), CRM automation, customer follow-up, and custom workflows ("If your team repeats it, there's a chance we can automate it") with an anti-hype caveat.
 
-**/industries/** — Contractors and service businesses generally, then roofing (full storm/lead → inspection → estimate → follow-up → job → review workflow), HVAC (seasonal demand spikes, maintenance plans), plumbing (emergency after-hours intake). Other trades listed as examples, explicitly non-exhaustive, US-wide.
+**/industries/** — Contractors and service businesses generally, then roofing (full storm/lead → inspection → estimate → follow-up → job → review workflow), HVAC (seasonal demand spikes, maintenance plans), plumbing (emergency after-hours intake). Each trade is a self-contained `<IndustrySection>` component fed by a data object (problems, workflow steps, automations, FAQ) so promoting it to `/industries/roofing/` later is a route file that renders the same component — no redesign. Other trades listed as examples, explicitly non-exhaustive, US-wide.
 
-**/growth-services/** — Migrated from today's homepage services: custom website design, redesign, SEO, conversion optimization, mobile optimization, maintenance, landing pages, lead capture, CRM setup. Framed as the foundation the digital workforce runs on.
+**/growth-services/** — Migrated from today's homepage services: custom website design, redesign, SEO, conversion optimization, mobile optimization, maintenance, landing pages, lead capture, CRM setup. Positioned as the foundation the digital workforce runs on — kept fully available but visually and structurally secondary: one nav slot (last in the services group), one compact homepage band, smaller cards, no hero, and every page ends by pointing back to the AI systems.
 
-**/ai-audit/** — Free AI Audit funnel: what you get (repetitive-task review, coverage-gap review, recommended automations, prioritized roadmap), what it is not (not a sales-pitch-only call), short qualification form using the same Formspree endpoint plus a hidden `_subject`/source field so audits are distinguishable in your inbox. Also the intended paid-traffic landing page (noindex not applied; it has organic value).
+**/ai-audit/** — The primary CTA destination and main conversion asset: what the audit covers (repetitive-task review, call/response coverage gaps, recommended automations, prioritized roadmap), what happens on the call, what it is not (not a sales-pitch-only call), what you get afterward, and how it leads into a scoped consultation. Short qualification form using the same Formspree endpoint plus a hidden source field so audit leads are distinguishable in your inbox, with the Calendly link offered on the success state. Also the paid-traffic landing page for non-receptionist campaigns.
 
-**/contact/** — Existing form untouched, better surrounding layout, phone, email, Calendly.
+**/resources/** — Hub + `/resources/$slug` article template built now, with the structure in place (typed article registry in `src/content/resources/`, listing grid, article layout, related-links block, Article + BreadcrumbList schema). Seeded with 2–3 genuinely useful pieces only (e.g. after-hours call coverage for contractors, what an AI receptionist can and can't do, missed-call recovery). No mass-generated SEO articles — you publish gradually.
+
+**/contact/** — Existing form untouched, better surrounding layout, phone, email, Calendly. "Book a consultation" lives here as the secondary conversion path.
+
 
 ## Technical plan
 
