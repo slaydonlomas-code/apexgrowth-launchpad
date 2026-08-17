@@ -84,38 +84,41 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-hero grain pt-32 pb-16 md:pt-40 md:pb-24">
+    <section className="relative isolate overflow-hidden border-b border-border bg-hero grain pt-32 pb-20 md:pt-40 md:pb-28">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute right-0 top-1/4 h-[520px] w-[520px] translate-x-1/3 rounded-full bg-primary/10 blur-[130px]" />
+        <div className="absolute right-0 top-1/4 h-[520px] w-[520px] translate-x-1/3 rounded-full bg-primary/[0.07] blur-[140px]" />
       </div>
-      <div className="mx-auto max-w-5xl px-5 md:px-8">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
         {breadcrumbs && (
           <nav
             aria-label="Breadcrumb"
-            className="mb-6 flex flex-wrap items-center gap-1 text-xs text-muted-foreground"
+            className="mb-8 flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground"
           >
             {breadcrumbs.map((b, i) => (
-              <span key={b.label} className="flex items-center gap-1">
-                {i > 0 && <ChevronRight className="h-3 w-3" />}
+              <span key={b.label} className="flex items-center gap-1.5">
+                {i > 0 && <ChevronRight className="h-3 w-3 text-muted-foreground/60" aria-hidden="true" />}
                 {b.to ? (
-                  <Link to={b.to as never} className="transition hover:text-foreground">
+                  <Link
+                    to={b.to as never}
+                    className="rounded-sm transition hover:text-primary focus-visible:text-primary"
+                  >
                     {b.label}
                   </Link>
                 ) : (
-                  <span className="text-foreground/80">{b.label}</span>
+                  <span className="font-medium text-foreground">{b.label}</span>
                 )}
               </span>
             ))}
           </nav>
         )}
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="animate-fade-up mt-4 max-w-3xl text-4xl leading-[1.08] md:text-5xl lg:text-6xl">
+        <h1 className="animate-fade-up mt-5 max-w-4xl text-4xl leading-[1.06] text-foreground md:text-5xl lg:text-[3.5rem]">
           {title} {highlight && <span className="text-gradient-gold">{highlight}</span>}
         </h1>
         <p className="animate-fade-up mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
           {intro}
         </p>
-        <div className="animate-fade-up mt-9 flex flex-col gap-3 sm:flex-row">
+        <div className="animate-fade-up mt-10 flex flex-col gap-3 sm:flex-row">
           {children ?? (
             <>
               <PrimaryCta location="hero" />
@@ -127,6 +130,7 @@ export function PageHero({
     </section>
   );
 }
+
 
 export function Section({
   id,
