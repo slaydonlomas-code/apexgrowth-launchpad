@@ -92,7 +92,7 @@ function Page() {
                 href={`#${a.slug}`}
                 className="flex h-full flex-col rounded-2xl border border-border bg-background/50 p-6 transition hover:-translate-y-1 hover:border-primary/40"
               >
-                <div className="text-xs uppercase tracking-[0.15em] text-gold-soft">{a.flagship ? "Flagship" : "AI employee"}</div>
+                <div className="text-xs font-medium uppercase tracking-[0.15em] text-primary">{a.flagship ? "Flagship" : "AI employee"}</div>
                 <h3 className="mt-2 text-lg">{a.name}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{a.tagline}</p>
                 <span className="mt-4 inline-flex items-center gap-2 text-sm text-primary">

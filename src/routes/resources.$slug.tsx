@@ -80,7 +80,7 @@ function Page() {
               <ChevronRight className="h-3 w-3" />
               <span className="text-foreground/70">{resource.category}</span>
             </nav>
-            <div className="text-xs uppercase tracking-[0.2em] text-gold-soft">
+            <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
               {resource.category} · {resource.readMinutes} min read
             </div>
             <h1 className="mt-4 text-3xl leading-[1.12] md:text-5xl">{resource.title}</h1>

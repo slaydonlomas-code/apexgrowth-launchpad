@@ -50,7 +50,7 @@ function Page() {
                 params={{ slug: r.slug }}
                 className="group flex h-full flex-col rounded-2xl border border-border bg-card/40 p-8 transition hover:border-primary/40"
               >
-                <div className="flex items-center gap-3 text-xs uppercase tracking-[0.16em] text-gold-soft">
+                <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.16em] text-primary">
                   <span>{r.category}</span>
                   <span className="text-muted-foreground/60">{r.readMinutes} min read</span>
                 </div>

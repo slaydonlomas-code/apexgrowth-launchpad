@@ -18,7 +18,7 @@ export function LegalPage({
       <main>
         <section className="bg-hero grain border-b border-border pt-32 pb-16 md:pt-40 md:pb-20">
           <div className="mx-auto max-w-3xl px-5 md:px-8">
-            <div className="text-xs uppercase tracking-[0.2em] text-gold-soft">Legal</div>
+            <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">Legal</div>
             <h1 className="mt-3 text-4xl md:text-5xl">{title}</h1>
             <p className="mt-4 text-sm text-muted-foreground">Last updated: {updated}</p>
           </div>

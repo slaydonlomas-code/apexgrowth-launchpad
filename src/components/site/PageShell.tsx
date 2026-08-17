@@ -19,7 +19,7 @@ export function PageShell({ children }: { children: ReactNode }) {
 }
 
 export function Eyebrow({ children }: { children: ReactNode }) {
-  return <div className="text-xs uppercase tracking-[0.2em] text-gold-soft">{children}</div>;
+  return <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">{children}</div>;
 }
 
 export function PrimaryCta({
