@@ -6,9 +6,9 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/ai-employees", label: "AI Employees" },
   { href: "/automations", label: "Automations" },
-  { href: "/#process", label: "Our Process" },
-  { href: "/#results", label: "Results" },
-  { href: "/contact", label: "Contact" },
+  { href: "/industries", label: "Industries" },
+  { href: "/resources", label: "Resources" },
+    { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {

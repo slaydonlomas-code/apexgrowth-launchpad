@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, PhoneOff, Clock, MessageSquareOff, TrendingDown, Globe, Search, Target } from "lucide-react";
-import { PageShell, Section, SectionHeading, Eyebrow, PrimaryCta, SecondaryCta, CtaBand } from "@/components/site/PageShell";
+import { PageShell, Section, SectionHeading, Eyebrow, PrimaryCta, SecondaryCta } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
 import { ContactForm } from "@/components/site/ContactForm";
 import { TeamGrid } from "@/components/sections/TeamGrid";
@@ -401,5 +401,3 @@ function Contact() {
     </section>
   );
 }
-
-export { CtaBand };
