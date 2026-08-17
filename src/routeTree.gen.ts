@@ -24,6 +24,7 @@ import { Route as AccessibilityStatementRouteImport } from './routes/accessibili
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as AiEmployeesIndexRouteImport } from './routes/ai-employees.index'
+import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as AiEmployeesAiReceptionistRouteImport } from './routes/ai-employees.ai-receptionist'
 
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
@@ -101,6 +102,11 @@ const AiEmployeesIndexRoute = AiEmployeesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AiEmployeesRoute,
 } as any)
+const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
+  id: '/resources/$slug',
+  path: '/resources/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiEmployeesAiReceptionistRoute =
   AiEmployeesAiReceptionistRouteImport.update({
     id: '/ai-receptionist',
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/ai-employees/': typeof AiEmployeesIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
@@ -140,6 +147,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/ai-employees': typeof AiEmployeesIndexRoute
   '/resources': typeof ResourcesIndexRoute
 }
@@ -159,6 +167,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
+  '/resources/$slug': typeof ResourcesSlugRoute
   '/ai-employees/': typeof AiEmployeesIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-and-conditions'
     | '/ai-employees/ai-receptionist'
+    | '/resources/$slug'
     | '/ai-employees/'
     | '/resources/'
   fileRoutesByTo: FileRoutesByTo
@@ -196,6 +206,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-and-conditions'
     | '/ai-employees/ai-receptionist'
+    | '/resources/$slug'
     | '/ai-employees'
     | '/resources'
   id:
@@ -214,6 +225,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms-and-conditions'
     | '/ai-employees/ai-receptionist'
+    | '/resources/$slug'
     | '/ai-employees/'
     | '/resources/'
   fileRoutesById: FileRoutesById
@@ -232,6 +244,7 @@ export interface RootRouteChildren {
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
+  ResourcesSlugRoute: typeof ResourcesSlugRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
@@ -342,6 +355,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiEmployeesIndexRouteImport
       parentRoute: typeof AiEmployeesRoute
     }
+    '/resources/$slug': {
+      id: '/resources/$slug'
+      path: '/resources/$slug'
+      fullPath: '/resources/$slug'
+      preLoaderRoute: typeof ResourcesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-employees/ai-receptionist': {
       id: '/ai-employees/ai-receptionist'
       path: '/ai-receptionist'
@@ -380,6 +400,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
+  ResourcesSlugRoute: ResourcesSlugRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
 }
 export const routeTree = rootRouteImport
