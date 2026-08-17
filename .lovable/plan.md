@@ -36,12 +36,15 @@ Split out later, only when a section has enough unique proof/content: `/ai-emplo
 
 ## Positioning and claims policy
 
-- Core idea: **Give Your Team Digital Teammates.** Humans keep relationships, judgment, sales, delivery. Digital workers handle answering, responding, qualifying, scheduling, following up, updating systems.
-- Two-tier capability language, applied consistently:
-  - **Available now** — websites, landing pages, lead capture, on-page SEO, CRM setup and workflow automation, email follow-up, website-to-CRM connection.
-  - **Custom implementation assessment** — AI voice receptionist, missed-call text-back, AI qualification, AI SMS follow-up, scheduling, estimate follow-up, reactivation, review automation, AI chat, custom workflows. Copy describes what a configured system does, never what "we currently run."
+- **Primary site-wide CTA: "Get a Free AI Audit"** (→ `/ai-audit/`). Secondary CTA: "See How It Works". The audit page and its follow-up path route qualified prospects to a consultation/Calendly booking, so the consultation still exists — it is just no longer the top-of-funnel ask. Phone number stays visible in the header for high-intent callers.
+- Core idea: **Give Your Team Digital Teammates** — used as a major supporting section (the human + digital workforce band) on the homepage and the AI Employees hub, not as the H1.
+- Two-tier capability distinction is kept **internally**, to govern wording — it is not surfaced as "assessment required" badges or any label that reads as "not available yet."
+  - **Proven today** — websites, landing pages, lead capture, on-page SEO, CRM setup and workflow automation, email follow-up, website-to-CRM connection. Stated plainly.
+  - **Custom-built AI systems** — voice receptionist, missed-call text-back, qualification, SMS follow-up, scheduling, estimate follow-up, reactivation, review automation, AI chat, custom workflows. Public framing: "built and configured around your workflow, scripts, and systems" / "scoped during your AI audit." Copy describes what a configured system does; it never claims volumes handled, current clients, named integrations, or measured results.
 - Banned on-site: named integrations (ServiceTitan, Jobber, GoHighLevel etc.), invented stats/testimonials/logos, guaranteed rankings/leads/revenue, "cutting-edge AI", "never miss a lead", review gating.
 - Missed-call framing: delayed response gives the prospect a reason to keep calling other companies — not "every missed call is a lost customer."
+
+
 
 ## Signature visual components (reused across pages)
 
