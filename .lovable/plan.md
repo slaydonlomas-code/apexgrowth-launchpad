@@ -25,9 +25,11 @@ I recommend a leaner map than the one in your brief. Reasons, concretely:
 /automations/                 Automations hub — missed-call text-back is the lead section
 /industries/                  Hub, with roofing / HVAC / plumbing as full workflow sections
 /growth-services/             Web design, SEO, landing pages, lead gen, CRM setup
-/ai-audit/                    Free AI Audit funnel landing page
+/ai-audit/                    Free AI Audit funnel (primary CTA destination)
+/resources/                   Resources hub + /resources/$slug article template
 /contact/                     Consultation page (form reused)
 + existing 5 legal pages
+
 ```
 
 Split out later, only when a section has enough unique proof/content: `/ai-employees/ai-lead-agent/`, `/ai-follow-up-agent/`, `/ai-scheduling-agent/`, `/ai-crm-assistant/`, `/automations/missed-call-text-back/`, `/automations/estimate-follow-up/`, `/automations/review-automation/`, `/industries/roofing/`, `/hvac/`, `/plumbing/`. Sections will be built as self-contained components with stable anchor IDs so promoting one to its own page later is a copy-paste, not a rewrite.
