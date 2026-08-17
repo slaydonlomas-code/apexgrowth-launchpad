@@ -14,6 +14,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
+import { Route as AiEmployeesRouteImport } from './routes/ai-employees'
 import { Route as AccessibilityStatementRouteImport } from './routes/accessibility-statement'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -42,6 +43,11 @@ const CookiePolicyRoute = CookiePolicyRouteImport.update({
   path: '/cookie-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiEmployeesRoute = AiEmployeesRouteImport.update({
+  id: '/ai-employees',
+  path: '/ai-employees',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccessibilityStatementRoute = AccessibilityStatementRouteImport.update({
   id: '/accessibility-statement',
   path: '/accessibility-statement',
@@ -56,6 +62,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accessibility-statement': typeof AccessibilityStatementRoute
+  '/ai-employees': typeof AiEmployeesRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accessibility-statement': typeof AccessibilityStatementRoute
+  '/ai-employees': typeof AiEmployeesRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/accessibility-statement': typeof AccessibilityStatementRoute
+  '/ai-employees': typeof AiEmployeesRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/accessibility-statement'
+    | '/ai-employees'
     | '/cookie-policy'
     | '/disclaimer'
     | '/privacy-policy'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/accessibility-statement'
+    | '/ai-employees'
     | '/cookie-policy'
     | '/disclaimer'
     | '/privacy-policy'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/accessibility-statement'
+    | '/ai-employees'
     | '/cookie-policy'
     | '/disclaimer'
     | '/privacy-policy'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccessibilityStatementRoute: typeof AccessibilityStatementRoute
+  AiEmployeesRoute: typeof AiEmployeesRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CookiePolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-employees': {
+      id: '/ai-employees'
+      path: '/ai-employees'
+      fullPath: '/ai-employees'
+      preLoaderRoute: typeof AiEmployeesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/accessibility-statement': {
       id: '/accessibility-statement'
       path: '/accessibility-statement'
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccessibilityStatementRoute: AccessibilityStatementRoute,
+  AiEmployeesRoute: AiEmployeesRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
