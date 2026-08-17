@@ -38,8 +38,6 @@ const COVERS = [
   "An honest note on anything that should stay human",
 ];
 
-export default function noop() {}
-
 function Page() {
   return (
     <PageShell>
