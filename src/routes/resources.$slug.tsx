@@ -1,8 +1,8 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { PageShell, Section, CtaBand } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
-import { ChevronRight } from "lucide-react";
-import { getResource } from "@/content/resources";
+import { ArrowRight, ChevronRight } from "lucide-react";
+import { getResource, RESOURCES } from "@/content/resources";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/resources/$slug")({
@@ -89,19 +89,19 @@ function Page() {
         </section>
 
         <Section>
-          <div className="mx-auto max-w-3xl space-y-12">
+          <div className="mx-auto max-w-[46rem] space-y-14">
             {resource.blocks.map((block) => (
               <Reveal key={block.heading}>
                 <div>
-                  <h2 className="text-2xl text-foreground md:text-3xl">{block.heading}</h2>
+                  <h2 className="text-xl leading-snug text-foreground md:text-2xl">{block.heading}</h2>
                   {block.paragraphs?.map((p) => (
-                    <p key={p} className="mt-4 text-base leading-relaxed text-muted-foreground">{p}</p>
+                    <p key={p} className="mt-4 text-[1.02rem] leading-8 text-muted-foreground">{p}</p>
                   ))}
                   {block.bullets && (
-                    <ul className="mt-5 space-y-3 text-base leading-relaxed text-muted-foreground">
+                    <ul className="mt-6 space-y-3 border-l-2 border-primary/20 pl-6 text-[1.02rem] leading-8 text-muted-foreground">
                       {block.bullets.map((b) => (
                         <li key={b} className="flex gap-3">
-                          <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                          <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
                           {b}
                         </li>
                       ))}
@@ -110,6 +110,25 @@ function Page() {
                 </div>
               </Reveal>
             ))}
+          </div>
+          <div className="mx-auto mt-20 max-w-[46rem] border-t border-border pt-10">
+            <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">Keep reading</div>
+            <ul className="mt-6 divide-y divide-border border-y border-border">
+              {RESOURCES.filter((r) => r.slug !== resource.slug)
+                .slice(0, 3)
+                .map((r) => (
+                  <li key={r.slug}>
+                    <Link
+                      to="/resources/$slug"
+                      params={{ slug: r.slug }}
+                      className="group flex items-center justify-between gap-6 py-4 text-sm transition hover:text-primary"
+                    >
+                      <span className="font-medium text-foreground group-hover:text-primary">{r.title}</span>
+                      <ArrowRight className="h-4 w-4 shrink-0 text-primary transition group-hover:translate-x-1" aria-hidden="true" />
+                    </Link>
+                  </li>
+                ))}
+            </ul>
           </div>
         </Section>
       </article>
