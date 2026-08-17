@@ -25,75 +25,89 @@ I recommend a leaner map than the one in your brief. Reasons, concretely:
 /automations/                 Automations hub — missed-call text-back is the lead section
 /industries/                  Hub, with roofing / HVAC / plumbing as full workflow sections
 /growth-services/             Web design, SEO, landing pages, lead gen, CRM setup
-/ai-audit/                    Free AI Audit funnel landing page
+/ai-audit/                    Free AI Audit funnel (primary CTA destination)
+/resources/                   Resources hub + /resources/$slug article template
 /contact/                     Consultation page (form reused)
 + existing 5 legal pages
+
 ```
 
 Split out later, only when a section has enough unique proof/content: `/ai-employees/ai-lead-agent/`, `/ai-follow-up-agent/`, `/ai-scheduling-agent/`, `/ai-crm-assistant/`, `/automations/missed-call-text-back/`, `/automations/estimate-follow-up/`, `/automations/review-automation/`, `/industries/roofing/`, `/hvac/`, `/plumbing/`. Sections will be built as self-contained components with stable anchor IDs so promoting one to its own page later is a copy-paste, not a rewrite.
 
 ## Positioning and claims policy
 
-- Core idea: **Give Your Team Digital Teammates.** Humans keep relationships, judgment, sales, delivery. Digital workers handle answering, responding, qualifying, scheduling, following up, updating systems.
-- Two-tier capability language, applied consistently:
-  - **Available now** — websites, landing pages, lead capture, on-page SEO, CRM setup and workflow automation, email follow-up, website-to-CRM connection.
-  - **Custom implementation assessment** — AI voice receptionist, missed-call text-back, AI qualification, AI SMS follow-up, scheduling, estimate follow-up, reactivation, review automation, AI chat, custom workflows. Copy describes what a configured system does, never what "we currently run."
+- **Primary site-wide CTA: "Get a Free AI Audit"** (→ `/ai-audit/`). Secondary CTA: "See How It Works". The audit page and its follow-up path route qualified prospects to a consultation/Calendly booking, so the consultation still exists — it is just no longer the top-of-funnel ask. Phone number stays visible in the header for high-intent callers.
+- Core idea: **Give Your Team Digital Teammates** — used as a major supporting section (the human + digital workforce band) on the homepage and the AI Employees hub, not as the H1.
+- Two-tier capability distinction is kept **internally**, to govern wording — it is not surfaced as "assessment required" badges or any label that reads as "not available yet."
+  - **Proven today** — websites, landing pages, lead capture, on-page SEO, CRM setup and workflow automation, email follow-up, website-to-CRM connection. Stated plainly.
+  - **Custom-built AI systems** — voice receptionist, missed-call text-back, qualification, SMS follow-up, scheduling, estimate follow-up, reactivation, review automation, AI chat, custom workflows. Public framing: "built and configured around your workflow, scripts, and systems" / "scoped during your AI audit." Copy describes what a configured system does; it never claims volumes handled, current clients, named integrations, or measured results.
 - Banned on-site: named integrations (ServiceTitan, Jobber, GoHighLevel etc.), invented stats/testimonials/logos, guaranteed rankings/leads/revenue, "cutting-edge AI", "never miss a lead", review gating.
 - Missed-call framing: delayed response gives the prospect a reason to keep calling other companies — not "every missed call is a lost customer."
+
+
 
 ## Signature visual components (reused across pages)
 
 1. `WorkflowFlow` — vertical/horizontal step chain with connectors (receptionist, lead agent, follow-up, missed-call, review, roofing). One component, data-driven.
 2. `CoverageTimeline` — side-by-side "Traditional coverage" vs "With digital coverage" 8:00 AM → 7:45 PM → next morning. The flagship visual on the homepage and receptionist page.
 3. `TeamGrid` — Your Team + Your Digital Workforce, joined by a connector, never adversarial.
-4. `CapabilityList` — capability rows with an "available now" / "assessment required" badge.
+4. `CapabilityList` — clean capability rows, no availability badges. Where a system is custom-built, the section intro says so in plain language ("configured around your call scripts, service area, and systems").
 5. All animate through the existing `Reveal` component; no new animation library.
 
 ## Page-by-page
 
-**Home** — Hero: "Give Your Team Digital Teammates" + supporting line about answering, responding, following up and scheduling around the clock; CTAs "Book a Free Consultation" / "See How It Works". Then: outcome-focused trust bar → Digital Workforce (5 agent cards → hub) → Coverage timeline → Missed-call text-back spotlight → Automations overview → Industries strip → Process (4 steps) → Why ApexGrowth → Growth Services (deliberately demoted, one band) → results/portfolio (existing content only) → FAQ → consultation form. Existing About content compresses into a short founder/approach band.
+**Home** — H1 direction: **"AI Employees That Help Your Business Answer, Follow Up & Book Customers 24/7"** (exact wording refined at build time, keeping "AI employees / automation", "service businesses", and the outcome explicit). Subhead names the audience: contractors and service businesses. CTAs: "Get a Free AI Audit" (primary) / "See How It Works" (secondary). Then: outcome trust bar → Digital Workforce (5 agent cards → hub) → **"Give Your Team Digital Teammates"** human+digital band (TeamGrid) → Coverage timeline → Missed-call text-back spotlight → Automations overview → Industries strip → Process (4 steps) → Why ApexGrowth → Growth Services (deliberately demoted, one compact band, no hero real estate) → results/portfolio (existing content only) → resources teaser → FAQ → audit/consultation form. Existing About content compresses into a short founder/approach band.
 
 **/ai-employees/** — Digital workforce concept, TeamGrid, then a deep anchored section per agent (receptionist summary + link, lead agent, follow-up, scheduling, CRM assistant), each with its own workflow diagram, problem framing, and capability list.
 
-**/ai-employees/ai-receptionist/** — The deepest page: "Your Receptionist Shouldn't Have to Work 24/7 for Your Business to Answer 24/7", coverage-gap explanation (lunch, other calls, after hours, sick days — the problem is coverage, not the employee), full coverage timeline, full call workflow, capability list, human-escalation section, human+AI section, FAQ, CTA.
+**/ai-employees/ai-receptionist/** — The deepest page, built to ad-landing-page standard so it can carry paid traffic: "Your Receptionist Shouldn't Have to Work 24/7 for Your Business to Answer 24/7", coverage-gap explanation (lunch, other calls, after hours, sick days — the problem is coverage, not the employee), full coverage timeline, full call workflow, capability list, human-escalation section, human+digital section, objection-handling block (does it sound robotic, what if it can't answer, do we control the script), dedicated FAQ, and repeated "Get a Free AI Audit" CTAs above the fold, mid-page, and at the end. Self-contained conversion path — a paid visitor never has to leave it.
 
 **/automations/** — Missed-call text-back first and most prominent (with contractor context: on a roof, driving, inside a home, on equipment), then estimate follow-up, lead reactivation (permission-aware, non-spam), review automation (no gating), CRM automation, customer follow-up, and custom workflows ("If your team repeats it, there's a chance we can automate it") with an anti-hype caveat.
 
-**/industries/** — Contractors and service businesses generally, then roofing (full storm/lead → inspection → estimate → follow-up → job → review workflow), HVAC (seasonal demand spikes, maintenance plans), plumbing (emergency after-hours intake). Other trades listed as examples, explicitly non-exhaustive, US-wide.
+**/industries/** — Contractors and service businesses generally, then roofing (full storm/lead → inspection → estimate → follow-up → job → review workflow), HVAC (seasonal demand spikes, maintenance plans), plumbing (emergency after-hours intake). Each trade is a self-contained `<IndustrySection>` component fed by a data object (problems, workflow steps, automations, FAQ) so promoting it to `/industries/roofing/` later is a route file that renders the same component — no redesign. Other trades listed as examples, explicitly non-exhaustive, US-wide.
 
-**/growth-services/** — Migrated from today's homepage services: custom website design, redesign, SEO, conversion optimization, mobile optimization, maintenance, landing pages, lead capture, CRM setup. Framed as the foundation the digital workforce runs on.
+**/growth-services/** — Migrated from today's homepage services: custom website design, redesign, SEO, conversion optimization, mobile optimization, maintenance, landing pages, lead capture, CRM setup. Positioned as the foundation the digital workforce runs on — kept fully available but visually and structurally secondary: one nav slot (last in the services group), one compact homepage band, smaller cards, no hero, and every page ends by pointing back to the AI systems.
 
-**/ai-audit/** — Free AI Audit funnel: what you get (repetitive-task review, coverage-gap review, recommended automations, prioritized roadmap), what it is not (not a sales-pitch-only call), short qualification form using the same Formspree endpoint plus a hidden `_subject`/source field so audits are distinguishable in your inbox. Also the intended paid-traffic landing page (noindex not applied; it has organic value).
+**/ai-audit/** — The primary CTA destination and main conversion asset: what the audit covers (repetitive-task review, call/response coverage gaps, recommended automations, prioritized roadmap), what happens on the call, what it is not (not a sales-pitch-only call), what you get afterward, and how it leads into a scoped consultation. Short qualification form using the same Formspree endpoint plus a hidden source field so audit leads are distinguishable in your inbox, with the Calendly link offered on the success state. Also the paid-traffic landing page for non-receptionist campaigns.
 
-**/contact/** — Existing form untouched, better surrounding layout, phone, email, Calendly.
+**/resources/** — Hub + `/resources/$slug` article template built now, with the structure in place (typed article registry in `src/content/resources/`, listing grid, article layout, related-links block, Article + BreadcrumbList schema). Seeded with 2–3 genuinely useful pieces only (e.g. after-hours call coverage for contractors, what an AI receptionist can and can't do, missed-call recovery). No mass-generated SEO articles — you publish gradually.
+
+**/contact/** — Existing form untouched, better surrounding layout, phone, email, Calendly. "Book a consultation" lives here as the secondary conversion path.
+
 
 ## Technical plan
 
-- Routes as flat TanStack files: `ai-employees.tsx` (layout `<Outlet/>`), `ai-employees.index.tsx`, `ai-employees.ai-receptionist.tsx`, `automations.index.tsx`, `industries.index.tsx`, `growth-services.tsx`, `ai-audit.tsx`, `contact.tsx`.
-- `ContactForm` is not modified: same Formspree endpoint, fields, names, success/error states, honeypot. Only optional additive hidden source field on `/ai-audit`.
-- Header nav: Home, AI Employees, Automations, Industries, Growth Services, About/Results, Contact + "Book a Free Consultation". Mobile menu gets a grouped accordion so it stays uncluttered.
-- Footer: expanded columns (AI Employees, Automations, Industries, Growth Services, Company, Legal, Contact) + consultation CTA + © 2026 line.
-- SEO: unique `head()` per route (title/description/og:title/og:description/og:url + self-referencing canonical); Organization/WebSite JSON-LD stays on root; add `Service` schema per service page and `BreadcrumbList` on nested routes; keep the existing FAQPage schema and extend it. Sitemap `entries` updated for all new routes; `llms.txt` rewritten around AI positioning. `BASE_URL` stays empty until a domain is set.
-- Redirects: `/` keeps its URL, so no external URL breaks. Existing homepage hash links (`/#services`, `/#process`, `/#results`) will be preserved as anchors on the new home where the section still exists, and repointed to the new pages where it moved.
+- Routes as flat TanStack files: `ai-employees.tsx` (layout `<Outlet/>`), `ai-employees.index.tsx`, `ai-employees.ai-receptionist.tsx`, `automations.index.tsx`, `industries.index.tsx`, `growth-services.tsx`, `ai-audit.tsx`, `resources.index.tsx`, `resources.$slug.tsx`, `contact.tsx`.
+- **Modularity rule:** every agent, automation, industry, and resource is a data object + a section component under `src/components/sections/`. Hub pages map over that data. Promoting any of them to its own URL later = a thin route file rendering the same component with its own `head()`. No redesign, no content rewrite.
+- `ContactForm` is not modified: same Formspree endpoint, fields, names, success/error states, honeypot. Only an additive hidden source field on `/ai-audit` so audit submissions are labeled.
+- Header nav: Home, AI Employees, Automations, Industries, Resources, Growth Services (last in the group), Company (About/Results), Contact + **"Get a Free AI Audit"** button. Mobile menu gets a grouped accordion so it stays uncluttered.
+- Footer: expanded columns (AI Employees, Automations, Industries, Growth Services, Resources, Company, Legal, Contact) + "Get a Free AI Audit" CTA + © 2026 line.
+- SEO: unique `head()` per route (title/description/og:title/og:description/og:url + self-referencing canonical); Organization/WebSite JSON-LD on root; `Service` schema per service page, `BreadcrumbList` on nested routes, `Article` on resource posts; existing FAQPage schema kept and extended.
+- **Production domain (blocking item for the SEO phase):** before Phase 6 I will ask you to confirm the exact permanent domain (e.g. `https://apexgrowth.com` — with or without `www`, https). That value becomes `BASE_URL` in `sitemap[.]xml.ts` and drives absolute canonicals, `og:url`, `og:image`, `robots.txt` `Sitemap:` directive, and structured-data `url` fields. Nothing ships with a blank or placeholder base URL; if the domain isn't ready by then, the SEO phase pauses rather than guessing.
+- Redirects: `/` keeps its URL, so no external URL breaks. Existing homepage hash links (`/#services`, `/#process`, `/#results`) are kept as anchors where the section still exists on the new home, and repointed to the new pages where content moved.
 - Performance/mobile: no new dependencies, SVG/CSS diagrams only (no heavy images), diagrams reflow to stacked cards under `md`, explicit overflow-x guards on timeline/workflow rows.
 - Analytics: none installed today. I will add data attributes on primary CTAs so a tag can be attached later; I will not install a tracker without your say-so.
 
 ## What I need from you
 
-Anything verifiable I can use as proof — real projects, screenshots, client names you're allowed to publish, before/after outcomes. Without them the results section stays qualitative (no invented numbers). Also: confirm whether you want a `/blog` or resources section in a later phase.
+1. The exact permanent production domain (needed before the SEO phase).
+2. Anything verifiable I can use as proof — real projects, screenshots, publishable client names, before/after outcomes. Without them the results section stays qualitative; no invented numbers.
+3. Confirmation of which 2–3 resource topics to seed first.
 
 ## Risks
 
-- Marketing AI services before your stack is tested creates a delivery gap; the two-tier language mitigates it but the "assessment required" framing does reduce conversion slightly vs. hard claims. That is the correct trade.
+- Marketing AI systems before your stack is production-tested creates a delivery gap. The "custom-built around your workflow" framing keeps the copy honest and still sells, but it means every AI lead needs a real scoping conversation before you commit to a build.
 - New URLs start with zero authority; the homepage will carry most rankings for months. Internal links from home → hubs → flagship are how authority flows.
 - Voice AI/SMS carry TCPA and call-recording obligations. I will add general consent language, not legal advice; your attorney should review before launch.
 
 ## Phased sequence
 
-1. **Foundation** — design tokens/section primitives, `WorkflowFlow`, `CoverageTimeline`, `TeamGrid`, `CapabilityList`, header/footer nav rebuild.
-2. **Homepage rewrite** — AI-first, growth services demoted, existing proof/FAQ/form preserved.
-3. **AI Employees hub + AI Receptionist flagship.**
-4. **Automations hub** (missed-call text-back lead) **+ Industries hub** (roofing/HVAC/plumbing workflows).
-5. **Growth Services + /ai-audit funnel + /contact.**
-6. **SEO & QA** — metadata, schema, sitemap, llms.txt, internal linking, link/form/mobile/overflow verification.
-7. **Later, on evidence** — split individual agent, automation, and industry pages out of their hubs; blog/resources.
+1. **Foundation** — section primitives, `WorkflowFlow`, `CoverageTimeline`, `TeamGrid`, `CapabilityList`, header/footer nav rebuild with the new "Get a Free AI Audit" CTA.
+2. **Homepage rewrite** — new AI-employees H1, "Digital Teammates" supporting band, growth services demoted, existing proof/FAQ/form preserved.
+3. **AI Employees hub + AI Receptionist flagship** (built to ad-landing standard).
+4. **Automations hub** (missed-call text-back lead) **+ Industries hub** (modular roofing/HVAC/plumbing sections).
+5. **/ai-audit funnel + Growth Services + /contact.**
+6. **Resources structure** + 2–3 seeded articles.
+7. **SEO & QA** — confirm production domain, then metadata, absolute canonicals, schema, sitemap, robots, llms.txt, internal linking, and link/form/mobile/overflow verification.
+8. **Later, on evidence** — split individual agent, automation, and industry sections into standalone pages as real implementations, case studies, and search demand appear.
+
