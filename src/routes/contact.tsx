@@ -41,21 +41,32 @@ function Page() {
               Talk to a <span className="text-gradient-gold">human.</span>
             </h1>
             <p className="mt-5 text-muted-foreground">
-              Tell us how calls, leads, and follow-up are handled today. We will tell you honestly what is worth automating and
-              what should stay with your team.
+              Tell us how calls, leads, and follow-up are handled today. We will tell you honestly
+              what is worth automating and what should stay with your team.
             </p>
             <div className="mt-10 divide-y divide-border border-y border-border">
-              <a href={CONTACT.phoneHref} className="flex items-center gap-4 py-4 text-foreground transition hover:text-primary">
-                <span className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card"><Phone className="h-4 w-4 text-primary" /></span>
+              <a
+                href={CONTACT.phoneHref}
+                className="flex items-center gap-4 py-4 text-foreground transition hover:text-primary"
+              >
+                <span className="grid h-10 w-10 place-items-center rounded-full border border-border bg-card">
+                  <Phone className="h-4 w-4 text-primary" />
+                </span>
                 {CONTACT.phone}
               </a>
-              <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-4 break-all py-4 text-foreground transition hover:text-primary">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border bg-card"><MailIcon className="h-4 w-4 text-primary" /></span>
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="flex items-center gap-4 break-all py-4 text-foreground transition hover:text-primary"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border bg-card">
+                  <MailIcon className="h-4 w-4 text-primary" />
+                </span>
                 {CONTACT.email}
               </a>
               <a
                 href={CONTACT.calendly}
-                target="_blank" rel="noreferrer"
+                target="_blank"
+                rel="noreferrer"
                 className="my-5 inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground transition hover:border-primary/60 hover:text-primary"
               >
                 <Calendar className="h-4 w-4 text-primary" /> Book a consultation

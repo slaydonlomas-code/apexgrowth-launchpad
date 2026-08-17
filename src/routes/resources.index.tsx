@@ -55,9 +55,12 @@ function Page() {
                   <span className="text-muted-foreground/60">{r.readMinutes} min read</span>
                 </div>
                 <h2 className="mt-4 text-xl leading-snug text-foreground md:text-2xl">{r.title}</h2>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{r.description}</p>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {r.description}
+                </p>
                 <span className="mt-6 inline-flex items-center gap-2 text-sm text-primary">
-                  Read the guide <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  Read the guide{" "}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </span>
               </Link>
             </Reveal>

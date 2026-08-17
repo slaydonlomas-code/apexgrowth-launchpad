@@ -30,12 +30,36 @@ export const Route = createFileRoute("/growth-services")({
 });
 
 const SERVICES = [
-  { icon: Globe, t: "Website design & rebuilds", c: "Fast, credible sites that make the phone ring and hand every lead straight to your AI systems." },
-  { icon: Search, t: "SEO", c: "Technical foundations, service pages, and content built so the right customers find you organically." },
-  { icon: Target, t: "Lead generation", c: "Paid and organic campaigns pointed at pages designed to convert, not just look good." },
-  { icon: Gauge, t: "Conversion optimization", c: "Clearer offers, better forms, faster load times — more booked work from the traffic you already have." },
-  { icon: Smartphone, t: "Mobile experience", c: "Most service-business traffic is on a phone with one hand free. That is the design constraint." },
-  { icon: ShieldCheck, t: "Maintenance & support", c: "Updates, monitoring, and fixes so the system that captures your leads never quietly breaks." },
+  {
+    icon: Globe,
+    t: "Website design & rebuilds",
+    c: "Fast, credible sites that make the phone ring and hand every lead straight to your AI systems.",
+  },
+  {
+    icon: Search,
+    t: "SEO",
+    c: "Technical foundations, service pages, and content built so the right customers find you organically.",
+  },
+  {
+    icon: Target,
+    t: "Lead generation",
+    c: "Paid and organic campaigns pointed at pages designed to convert, not just look good.",
+  },
+  {
+    icon: Gauge,
+    t: "Conversion optimization",
+    c: "Clearer offers, better forms, faster load times — more booked work from the traffic you already have.",
+  },
+  {
+    icon: Smartphone,
+    t: "Mobile experience",
+    c: "Most service-business traffic is on a phone with one hand free. That is the design constraint.",
+  },
+  {
+    icon: ShieldCheck,
+    t: "Maintenance & support",
+    c: "Updates, monitoring, and fixes so the system that captures your leads never quietly breaks.",
+  },
 ];
 
 function Page() {
@@ -50,7 +74,10 @@ function Page() {
       />
 
       <Section>
-        <SectionHeading eyebrow="What we offer" title="Marketing that hands off cleanly to your digital workforce." />
+        <SectionHeading
+          eyebrow="What we offer"
+          title="Marketing that hands off cleanly to your digital workforce."
+        />
         <div className="mt-12 grid gap-x-12 border-t border-border md:grid-cols-2">
           {SERVICES.map((s, i) => (
             <Reveal key={s.t} delay={(i % 3) * 70}>

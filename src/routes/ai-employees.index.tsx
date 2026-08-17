@@ -1,6 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { PageShell, PageHero, Section, SectionHeading, CtaBand, PrimaryCta, SecondaryCta } from "@/components/site/PageShell";
+import {
+  PageShell,
+  PageHero,
+  Section,
+  SectionHeading,
+  CtaBand,
+  PrimaryCta,
+  SecondaryCta,
+} from "@/components/site/PageShell";
 import { TeamGrid } from "@/components/sections/TeamGrid";
 import { AgentSection } from "@/components/sections/AgentSection";
 import { CoverageTimeline } from "@/components/sections/CoverageTimeline";
@@ -36,7 +44,12 @@ export const Route = createFileRoute("/ai-employees/")({
             "@type": "BreadcrumbList",
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: `${origin}/` },
-              { "@type": "ListItem", position: 2, name: "AI Employees", item: `${origin}/ai-employees` },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "AI Employees",
+                item: `${origin}/ai-employees`,
+              },
             ],
           }),
         },
@@ -100,14 +113,18 @@ function Page() {
                   <span className="text-base font-semibold text-foreground">{a.name}</span>
                   {a.flagship && (
                     <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/5 px-2.5 py-0.5 text-[0.65rem] font-medium uppercase tracking-[0.14em] text-primary">
-                      <span className="h-1.5 w-1.5 rounded-full bg-green" aria-hidden="true" /> Flagship
+                      <span className="h-1.5 w-1.5 rounded-full bg-green" aria-hidden="true" />{" "}
+                      Flagship
                     </span>
                   )}
                 </span>
                 <span className="text-sm leading-relaxed text-muted-foreground">{a.tagline}</span>
                 <span className="inline-flex items-center gap-2 text-sm font-medium text-primary md:justify-self-end">
                   Read more{" "}
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
+                  <ArrowRight
+                    className="h-4 w-4 transition group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
                 </span>
               </a>
             </Reveal>
@@ -115,10 +132,13 @@ function Page() {
         </div>
       </Section>
 
-
       <Section>
         {AGENTS.map((a) => (
-          <AgentSection key={a.slug} agent={a} link={a.flagship ? "/ai-employees/ai-receptionist" : undefined} />
+          <AgentSection
+            key={a.slug}
+            agent={a}
+            link={a.flagship ? "/ai-employees/ai-receptionist" : undefined}
+          />
         ))}
       </Section>
 
@@ -130,7 +150,11 @@ function Page() {
         />
         <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
           <PrimaryCta location="ai-employees-build" />
-          <SecondaryCta label="See the automations" to="/automations" location="ai-employees-build" />
+          <SecondaryCta
+            label="See the automations"
+            to="/automations"
+            location="ai-employees-build"
+          />
         </div>
       </Section>
 

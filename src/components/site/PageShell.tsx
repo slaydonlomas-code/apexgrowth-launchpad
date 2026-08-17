@@ -19,7 +19,9 @@ export function PageShell({ children }: { children: ReactNode }) {
 }
 
 export function Eyebrow({ children }: { children: ReactNode }) {
-  return <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">{children}</div>;
+  return (
+    <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">{children}</div>
+  );
 }
 
 export function PrimaryCta({
@@ -96,7 +98,9 @@ export function PageHero({
           >
             {breadcrumbs.map((b, i) => (
               <span key={b.label} className="flex items-center gap-1.5">
-                {i > 0 && <ChevronRight className="h-3 w-3 text-muted-foreground/60" aria-hidden="true" />}
+                {i > 0 && (
+                  <ChevronRight className="h-3 w-3 text-muted-foreground/60" aria-hidden="true" />
+                )}
                 {b.to ? (
                   <Link
                     to={b.to as never}
@@ -130,7 +134,6 @@ export function PageHero({
     </section>
   );
 }
-
 
 export function Section({
   id,
