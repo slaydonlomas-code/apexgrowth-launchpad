@@ -51,13 +51,17 @@ function Page() {
 
       <Section>
         <SectionHeading eyebrow="What we offer" title="Marketing that hands off cleanly to your digital workforce." />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-x-12 border-t border-border md:grid-cols-2">
           {SERVICES.map((s, i) => (
-            <Reveal key={s.t} delay={(i % 3) * 80}>
-              <div className="h-full rounded-2xl border border-border bg-card/40 p-7 transition hover:border-primary/40">
-                <s.icon className="h-5 w-5 text-primary" />
-                <h3 className="mt-5 text-lg text-foreground">{s.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.c}</p>
+            <Reveal key={s.t} delay={(i % 3) * 70}>
+              <div className="flex h-full items-start gap-5 border-b border-border py-7">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-primary/20 bg-primary/5 text-primary">
+                  <s.icon className="h-4.5 w-4.5" aria-hidden="true" />
+                </span>
+                <div>
+                  <h3 className="text-base font-semibold text-foreground">{s.t}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.c}</p>
+                </div>
               </div>
             </Reveal>
           ))}
