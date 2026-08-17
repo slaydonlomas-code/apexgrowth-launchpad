@@ -567,7 +567,7 @@ function Contact() {
             <div className="flex flex-wrap gap-x-3">
               <dt className="text-muted-foreground">Phone</dt>
               <dd>
-                <a href={`tel:${CONTACT.phoneHref}`} className="font-medium text-foreground hover:text-primary">{CONTACT.phone}</a>
+                <a href={CONTACT.phoneHref} className="font-medium text-foreground hover:text-primary">{CONTACT.phone}</a>
               </dd>
             </div>
             <div className="flex flex-wrap gap-x-3">
