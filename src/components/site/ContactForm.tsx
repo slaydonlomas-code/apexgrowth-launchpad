@@ -6,7 +6,7 @@ const budgets = ["Under $1K", "$1K–$3K", "$3K–$6K", "$6K–$15K", "$15K+"];
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mnjenwnj";
 
-export function ContactForm() {
+export function ContactForm({ source = "Website" }: { source?: string } = {}) {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const uid = useId();
@@ -110,6 +110,7 @@ export function ContactForm() {
       {/* Honeypot for spam bots */}
       <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" style={{ display: "none" }} />
       <input type="hidden" name="_subject" value="New ApexGrowth lead inquiry" />
+      <input type="hidden" name="source" value={source} />
       <div className="flex flex-col-reverse gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-muted-foreground">By submitting you consent to be contacted about your inquiry.</p>
         <button

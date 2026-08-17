@@ -3,6 +3,9 @@ import { Logo } from "@/components/site/Logo";
 
 const company = [
   { href: "/#about", label: "About ApexGrowth" },
+  { href: "/ai-employees", label: "AI Employees" },
+  { href: "/automations", label: "Automations" },
+  { href: "/ai-audit", label: "Free AI Audit" },
   { href: "/#services", label: "Services" },
   { href: "/#process", label: "Our Process" },
   { href: "/#results", label: "Results" },
@@ -36,10 +39,10 @@ export function Footer() {
             ApexGrowth designs high-converting websites and digital growth systems for businesses across the United States.
           </p>
           <a
-            href="/#contact"
+            href="/ai-audit"
             className="mt-6 inline-flex rounded-full bg-gold-gradient px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-gold transition hover:opacity-90"
           >
-            Book a Free Consultation
+            Get a Free AI Audit
           </a>
         </div>
 

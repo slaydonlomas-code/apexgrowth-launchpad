@@ -3,12 +3,12 @@ import { Menu, X, Phone } from "lucide-react";
 import { Logo } from "@/components/site/Logo";
 
 const links = [
-  { href: "/#top", label: "Home" },
-  { href: "/#services", label: "Services" },
+  { href: "/", label: "Home" },
+  { href: "/ai-employees", label: "AI Employees" },
+  { href: "/automations", label: "Automations" },
   { href: "/#process", label: "Our Process" },
-  { href: "/#about", label: "About" },
   { href: "/#results", label: "Results" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {
@@ -42,10 +42,10 @@ export function Header() {
             <Phone className="h-4 w-4" /> 337-385-3084
           </a>
           <a
-            href="/#contact"
+            href="/ai-audit"
             className="rounded-full bg-gold-gradient px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-gold transition hover:opacity-90"
           >
-            Book a Free Consultation
+            Get a Free AI Audit
           </a>
         </div>
         <button className="p-2 text-foreground lg:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open}>
@@ -64,11 +64,11 @@ export function Header() {
               <Phone className="h-4 w-4" /> 337-385-3084
             </a>
             <a
-              href="/#contact"
+              href="/ai-audit"
               onClick={() => setOpen(false)}
               className="mt-1 rounded-full bg-gold-gradient px-5 py-3 text-center text-sm font-medium text-primary-foreground"
             >
-              Book a Free Consultation
+              Get a Free AI Audit
             </a>
           </div>
         </div>

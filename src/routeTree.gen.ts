@@ -14,8 +14,14 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as DisclaimerRouteImport } from './routes/disclaimer'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AutomationsRouteImport } from './routes/automations'
+import { Route as AiEmployeesRouteImport } from './routes/ai-employees'
+import { Route as AiAuditRouteImport } from './routes/ai-audit'
 import { Route as AccessibilityStatementRouteImport } from './routes/accessibility-statement'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiEmployeesIndexRouteImport } from './routes/ai-employees.index'
+import { Route as AiEmployeesAiReceptionistRouteImport } from './routes/ai-employees.ai-receptionist'
 
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
@@ -42,6 +48,26 @@ const CookiePolicyRoute = CookiePolicyRouteImport.update({
   path: '/cookie-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutomationsRoute = AutomationsRouteImport.update({
+  id: '/automations',
+  path: '/automations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiEmployeesRoute = AiEmployeesRouteImport.update({
+  id: '/ai-employees',
+  path: '/ai-employees',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiAuditRoute = AiAuditRouteImport.update({
+  id: '/ai-audit',
+  path: '/ai-audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccessibilityStatementRoute = AccessibilityStatementRouteImport.update({
   id: '/accessibility-statement',
   path: '/accessibility-statement',
@@ -52,68 +78,117 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiEmployeesIndexRoute = AiEmployeesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AiEmployeesRoute,
+} as any)
+const AiEmployeesAiReceptionistRoute =
+  AiEmployeesAiReceptionistRouteImport.update({
+    id: '/ai-receptionist',
+    path: '/ai-receptionist',
+    getParentRoute: () => AiEmployeesRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accessibility-statement': typeof AccessibilityStatementRoute
+  '/ai-audit': typeof AiAuditRoute
+  '/ai-employees': typeof AiEmployeesRouteWithChildren
+  '/automations': typeof AutomationsRoute
+  '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
+  '/ai-employees/': typeof AiEmployeesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accessibility-statement': typeof AccessibilityStatementRoute
+  '/ai-audit': typeof AiAuditRoute
+  '/automations': typeof AutomationsRoute
+  '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
+  '/ai-employees': typeof AiEmployeesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/accessibility-statement': typeof AccessibilityStatementRoute
+  '/ai-audit': typeof AiAuditRoute
+  '/ai-employees': typeof AiEmployeesRouteWithChildren
+  '/automations': typeof AutomationsRoute
+  '/contact': typeof ContactRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
+  '/ai-employees/': typeof AiEmployeesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/accessibility-statement'
+    | '/ai-audit'
+    | '/ai-employees'
+    | '/automations'
+    | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/ai-employees/ai-receptionist'
+    | '/ai-employees/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/accessibility-statement'
+    | '/ai-audit'
+    | '/automations'
+    | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/ai-employees/ai-receptionist'
+    | '/ai-employees'
   id:
     | '__root__'
     | '/'
     | '/accessibility-statement'
+    | '/ai-audit'
+    | '/ai-employees'
+    | '/automations'
+    | '/contact'
     | '/cookie-policy'
     | '/disclaimer'
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/ai-employees/ai-receptionist'
+    | '/ai-employees/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccessibilityStatementRoute: typeof AccessibilityStatementRoute
+  AiAuditRoute: typeof AiAuditRoute
+  AiEmployeesRoute: typeof AiEmployeesRouteWithChildren
+  AutomationsRoute: typeof AutomationsRoute
+  ContactRoute: typeof ContactRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -158,6 +233,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CookiePolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/automations': {
+      id: '/automations'
+      path: '/automations'
+      fullPath: '/automations'
+      preLoaderRoute: typeof AutomationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-employees': {
+      id: '/ai-employees'
+      path: '/ai-employees'
+      fullPath: '/ai-employees'
+      preLoaderRoute: typeof AiEmployeesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-audit': {
+      id: '/ai-audit'
+      path: '/ai-audit'
+      fullPath: '/ai-audit'
+      preLoaderRoute: typeof AiAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/accessibility-statement': {
       id: '/accessibility-statement'
       path: '/accessibility-statement'
@@ -172,12 +275,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-employees/': {
+      id: '/ai-employees/'
+      path: '/'
+      fullPath: '/ai-employees/'
+      preLoaderRoute: typeof AiEmployeesIndexRouteImport
+      parentRoute: typeof AiEmployeesRoute
+    }
+    '/ai-employees/ai-receptionist': {
+      id: '/ai-employees/ai-receptionist'
+      path: '/ai-receptionist'
+      fullPath: '/ai-employees/ai-receptionist'
+      preLoaderRoute: typeof AiEmployeesAiReceptionistRouteImport
+      parentRoute: typeof AiEmployeesRoute
+    }
   }
 }
+
+interface AiEmployeesRouteChildren {
+  AiEmployeesAiReceptionistRoute: typeof AiEmployeesAiReceptionistRoute
+  AiEmployeesIndexRoute: typeof AiEmployeesIndexRoute
+}
+
+const AiEmployeesRouteChildren: AiEmployeesRouteChildren = {
+  AiEmployeesAiReceptionistRoute: AiEmployeesAiReceptionistRoute,
+  AiEmployeesIndexRoute: AiEmployeesIndexRoute,
+}
+
+const AiEmployeesRouteWithChildren = AiEmployeesRoute._addFileChildren(
+  AiEmployeesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccessibilityStatementRoute: AccessibilityStatementRoute,
+  AiAuditRoute: AiAuditRoute,
+  AiEmployeesRoute: AiEmployeesRouteWithChildren,
+  AutomationsRoute: AutomationsRoute,
+  ContactRoute: ContactRoute,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
