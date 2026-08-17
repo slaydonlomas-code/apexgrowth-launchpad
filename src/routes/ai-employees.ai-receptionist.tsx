@@ -96,12 +96,13 @@ function Page() {
           title="The problem is coverage, not the employee."
           intro="Your office staff is not failing. There are simply more hours in the week than any person can answer a phone."
         />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 border-t border-border">
           {GAPS.map((g, i) => (
-            <Reveal key={g.t} delay={(i % 4) * 70}>
-              <div className="h-full rounded-2xl border border-border bg-card/40 p-6">
-                <div className="text-base text-foreground">{g.t}</div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{g.c}</p>
+            <Reveal key={g.t} delay={(i % 4) * 60}>
+              <div className="grid items-start gap-x-10 gap-y-2 border-b border-border py-6 md:grid-cols-[auto_minmax(0,16rem)_1fr] md:items-center">
+                <span className="text-xs tracking-[0.16em] text-primary/70">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="text-base font-semibold text-foreground">{g.t}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{g.c}</p>
               </div>
             </Reveal>
           ))}
