@@ -21,6 +21,7 @@ import { Route as AiAuditRouteImport } from './routes/ai-audit'
 import { Route as AccessibilityStatementRouteImport } from './routes/accessibility-statement'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AiEmployeesIndexRouteImport } from './routes/ai-employees.index'
+import { Route as AiEmployeesAiReceptionistRouteImport } from './routes/ai-employees.ai-receptionist'
 
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
@@ -82,6 +83,12 @@ const AiEmployeesIndexRoute = AiEmployeesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AiEmployeesRoute,
 } as any)
+const AiEmployeesAiReceptionistRoute =
+  AiEmployeesAiReceptionistRouteImport.update({
+    id: '/ai-receptionist',
+    path: '/ai-receptionist',
+    getParentRoute: () => AiEmployeesRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
   '/ai-employees/': typeof AiEmployeesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -108,6 +116,7 @@ export interface FileRoutesByTo {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
   '/ai-employees': typeof AiEmployeesIndexRoute
 }
 export interface FileRoutesById {
@@ -123,6 +132,7 @@ export interface FileRoutesById {
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
   '/ai-employees/': typeof AiEmployeesIndexRoute
 }
 export interface FileRouteTypes {
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/ai-employees/ai-receptionist'
     | '/ai-employees/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/ai-employees/ai-receptionist'
     | '/ai-employees'
   id:
     | '__root__'
@@ -166,6 +178,7 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/ai-employees/ai-receptionist'
     | '/ai-employees/'
   fileRoutesById: FileRoutesById
 }
@@ -269,14 +282,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiEmployeesIndexRouteImport
       parentRoute: typeof AiEmployeesRoute
     }
+    '/ai-employees/ai-receptionist': {
+      id: '/ai-employees/ai-receptionist'
+      path: '/ai-receptionist'
+      fullPath: '/ai-employees/ai-receptionist'
+      preLoaderRoute: typeof AiEmployeesAiReceptionistRouteImport
+      parentRoute: typeof AiEmployeesRoute
+    }
   }
 }
 
 interface AiEmployeesRouteChildren {
+  AiEmployeesAiReceptionistRoute: typeof AiEmployeesAiReceptionistRoute
   AiEmployeesIndexRoute: typeof AiEmployeesIndexRoute
 }
 
 const AiEmployeesRouteChildren: AiEmployeesRouteChildren = {
+  AiEmployeesAiReceptionistRoute: AiEmployeesAiReceptionistRoute,
   AiEmployeesIndexRoute: AiEmployeesIndexRoute,
 }
 
