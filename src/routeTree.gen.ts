@@ -17,6 +17,7 @@ import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as AiEmployeesRouteImport } from './routes/ai-employees'
 import { Route as AccessibilityStatementRouteImport } from './routes/accessibility-statement'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiEmployeesIndexRouteImport } from './routes/ai-employees.index'
 
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
@@ -58,37 +59,44 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiEmployeesIndexRoute = AiEmployeesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AiEmployeesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accessibility-statement': typeof AccessibilityStatementRoute
-  '/ai-employees': typeof AiEmployeesRoute
+  '/ai-employees': typeof AiEmployeesRouteWithChildren
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ai-employees/': typeof AiEmployeesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accessibility-statement': typeof AccessibilityStatementRoute
-  '/ai-employees': typeof AiEmployeesRoute
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ai-employees': typeof AiEmployeesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/accessibility-statement': typeof AccessibilityStatementRoute
-  '/ai-employees': typeof AiEmployeesRoute
+  '/ai-employees': typeof AiEmployeesRouteWithChildren
   '/cookie-policy': typeof CookiePolicyRoute
   '/disclaimer': typeof DisclaimerRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ai-employees/': typeof AiEmployeesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,16 +109,17 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/ai-employees/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/accessibility-statement'
-    | '/ai-employees'
     | '/cookie-policy'
     | '/disclaimer'
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/ai-employees'
   id:
     | '__root__'
     | '/'
@@ -121,12 +130,13 @@ export interface FileRouteTypes {
     | '/privacy-policy'
     | '/sitemap.xml'
     | '/terms-and-conditions'
+    | '/ai-employees/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccessibilityStatementRoute: typeof AccessibilityStatementRoute
-  AiEmployeesRoute: typeof AiEmployeesRoute
+  AiEmployeesRoute: typeof AiEmployeesRouteWithChildren
   CookiePolicyRoute: typeof CookiePolicyRoute
   DisclaimerRoute: typeof DisclaimerRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -192,13 +202,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-employees/': {
+      id: '/ai-employees/'
+      path: '/'
+      fullPath: '/ai-employees/'
+      preLoaderRoute: typeof AiEmployeesIndexRouteImport
+      parentRoute: typeof AiEmployeesRoute
+    }
   }
 }
+
+interface AiEmployeesRouteChildren {
+  AiEmployeesIndexRoute: typeof AiEmployeesIndexRoute
+}
+
+const AiEmployeesRouteChildren: AiEmployeesRouteChildren = {
+  AiEmployeesIndexRoute: AiEmployeesIndexRoute,
+}
+
+const AiEmployeesRouteWithChildren = AiEmployeesRoute._addFileChildren(
+  AiEmployeesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccessibilityStatementRoute: AccessibilityStatementRoute,
-  AiEmployeesRoute: AiEmployeesRoute,
+  AiEmployeesRoute: AiEmployeesRouteWithChildren,
   CookiePolicyRoute: CookiePolicyRoute,
   DisclaimerRoute: DisclaimerRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,

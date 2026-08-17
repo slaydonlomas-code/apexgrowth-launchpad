@@ -35,7 +35,7 @@ export function PrimaryCta({
 }) {
   return (
     <Link
-      to={to}
+      to={to as never}
       data-cta="primary"
       data-cta-location={location}
       className={`inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-gold transition hover:opacity-90 ${className}`}
@@ -58,7 +58,7 @@ export function SecondaryCta({
 }) {
   return (
     <Link
-      to={to}
+      to={to as never}
       data-cta="secondary"
       data-cta-location={location}
       className={`inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background/40 px-7 py-3.5 text-sm font-medium text-foreground transition hover:border-primary/60 ${className}`}
@@ -95,7 +95,7 @@ export function PageHero({
               <span key={b.label} className="flex items-center gap-1">
                 {i > 0 && <ChevronRight className="h-3 w-3" />}
                 {b.to ? (
-                  <Link to={b.to} className="transition hover:text-foreground">{b.label}</Link>
+                  <Link to={b.to as never} className="transition hover:text-foreground">{b.label}</Link>
                 ) : (
                   <span className="text-foreground/80">{b.label}</span>
                 )}
