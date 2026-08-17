@@ -77,31 +77,37 @@ Split out later, only when a section has enough unique proof/content: `/ai-emplo
 
 ## Technical plan
 
-- Routes as flat TanStack files: `ai-employees.tsx` (layout `<Outlet/>`), `ai-employees.index.tsx`, `ai-employees.ai-receptionist.tsx`, `automations.index.tsx`, `industries.index.tsx`, `growth-services.tsx`, `ai-audit.tsx`, `contact.tsx`.
-- `ContactForm` is not modified: same Formspree endpoint, fields, names, success/error states, honeypot. Only optional additive hidden source field on `/ai-audit`.
-- Header nav: Home, AI Employees, Automations, Industries, Growth Services, About/Results, Contact + "Book a Free Consultation". Mobile menu gets a grouped accordion so it stays uncluttered.
-- Footer: expanded columns (AI Employees, Automations, Industries, Growth Services, Company, Legal, Contact) + consultation CTA + © 2026 line.
-- SEO: unique `head()` per route (title/description/og:title/og:description/og:url + self-referencing canonical); Organization/WebSite JSON-LD stays on root; add `Service` schema per service page and `BreadcrumbList` on nested routes; keep the existing FAQPage schema and extend it. Sitemap `entries` updated for all new routes; `llms.txt` rewritten around AI positioning. `BASE_URL` stays empty until a domain is set.
-- Redirects: `/` keeps its URL, so no external URL breaks. Existing homepage hash links (`/#services`, `/#process`, `/#results`) will be preserved as anchors on the new home where the section still exists, and repointed to the new pages where it moved.
+- Routes as flat TanStack files: `ai-employees.tsx` (layout `<Outlet/>`), `ai-employees.index.tsx`, `ai-employees.ai-receptionist.tsx`, `automations.index.tsx`, `industries.index.tsx`, `growth-services.tsx`, `ai-audit.tsx`, `resources.index.tsx`, `resources.$slug.tsx`, `contact.tsx`.
+- **Modularity rule:** every agent, automation, industry, and resource is a data object + a section component under `src/components/sections/`. Hub pages map over that data. Promoting any of them to its own URL later = a thin route file rendering the same component with its own `head()`. No redesign, no content rewrite.
+- `ContactForm` is not modified: same Formspree endpoint, fields, names, success/error states, honeypot. Only an additive hidden source field on `/ai-audit` so audit submissions are labeled.
+- Header nav: Home, AI Employees, Automations, Industries, Resources, Growth Services (last in the group), Company (About/Results), Contact + **"Get a Free AI Audit"** button. Mobile menu gets a grouped accordion so it stays uncluttered.
+- Footer: expanded columns (AI Employees, Automations, Industries, Growth Services, Resources, Company, Legal, Contact) + "Get a Free AI Audit" CTA + © 2026 line.
+- SEO: unique `head()` per route (title/description/og:title/og:description/og:url + self-referencing canonical); Organization/WebSite JSON-LD on root; `Service` schema per service page, `BreadcrumbList` on nested routes, `Article` on resource posts; existing FAQPage schema kept and extended.
+- **Production domain (blocking item for the SEO phase):** before Phase 6 I will ask you to confirm the exact permanent domain (e.g. `https://apexgrowth.com` — with or without `www`, https). That value becomes `BASE_URL` in `sitemap[.]xml.ts` and drives absolute canonicals, `og:url`, `og:image`, `robots.txt` `Sitemap:` directive, and structured-data `url` fields. Nothing ships with a blank or placeholder base URL; if the domain isn't ready by then, the SEO phase pauses rather than guessing.
+- Redirects: `/` keeps its URL, so no external URL breaks. Existing homepage hash links (`/#services`, `/#process`, `/#results`) are kept as anchors where the section still exists on the new home, and repointed to the new pages where content moved.
 - Performance/mobile: no new dependencies, SVG/CSS diagrams only (no heavy images), diagrams reflow to stacked cards under `md`, explicit overflow-x guards on timeline/workflow rows.
 - Analytics: none installed today. I will add data attributes on primary CTAs so a tag can be attached later; I will not install a tracker without your say-so.
 
 ## What I need from you
 
-Anything verifiable I can use as proof — real projects, screenshots, client names you're allowed to publish, before/after outcomes. Without them the results section stays qualitative (no invented numbers). Also: confirm whether you want a `/blog` or resources section in a later phase.
+1. The exact permanent production domain (needed before the SEO phase).
+2. Anything verifiable I can use as proof — real projects, screenshots, publishable client names, before/after outcomes. Without them the results section stays qualitative; no invented numbers.
+3. Confirmation of which 2–3 resource topics to seed first.
 
 ## Risks
 
-- Marketing AI services before your stack is tested creates a delivery gap; the two-tier language mitigates it but the "assessment required" framing does reduce conversion slightly vs. hard claims. That is the correct trade.
+- Marketing AI systems before your stack is production-tested creates a delivery gap. The "custom-built around your workflow" framing keeps the copy honest and still sells, but it means every AI lead needs a real scoping conversation before you commit to a build.
 - New URLs start with zero authority; the homepage will carry most rankings for months. Internal links from home → hubs → flagship are how authority flows.
 - Voice AI/SMS carry TCPA and call-recording obligations. I will add general consent language, not legal advice; your attorney should review before launch.
 
 ## Phased sequence
 
-1. **Foundation** — design tokens/section primitives, `WorkflowFlow`, `CoverageTimeline`, `TeamGrid`, `CapabilityList`, header/footer nav rebuild.
-2. **Homepage rewrite** — AI-first, growth services demoted, existing proof/FAQ/form preserved.
-3. **AI Employees hub + AI Receptionist flagship.**
-4. **Automations hub** (missed-call text-back lead) **+ Industries hub** (roofing/HVAC/plumbing workflows).
-5. **Growth Services + /ai-audit funnel + /contact.**
-6. **SEO & QA** — metadata, schema, sitemap, llms.txt, internal linking, link/form/mobile/overflow verification.
-7. **Later, on evidence** — split individual agent, automation, and industry pages out of their hubs; blog/resources.
+1. **Foundation** — section primitives, `WorkflowFlow`, `CoverageTimeline`, `TeamGrid`, `CapabilityList`, header/footer nav rebuild with the new "Get a Free AI Audit" CTA.
+2. **Homepage rewrite** — new AI-employees H1, "Digital Teammates" supporting band, growth services demoted, existing proof/FAQ/form preserved.
+3. **AI Employees hub + AI Receptionist flagship** (built to ad-landing standard).
+4. **Automations hub** (missed-call text-back lead) **+ Industries hub** (modular roofing/HVAC/plumbing sections).
+5. **/ai-audit funnel + Growth Services + /contact.**
+6. **Resources structure** + 2–3 seeded articles.
+7. **SEO & QA** — confirm production domain, then metadata, absolute canonicals, schema, sitemap, robots, llms.txt, internal linking, and link/form/mobile/overflow verification.
+8. **Later, on evidence** — split individual agent, automation, and industry sections into standalone pages as real implementations, case studies, and search demand appear.
+
