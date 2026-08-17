@@ -56,6 +56,7 @@ function Home() {
   return (
     <PageShell>
       <Hero />
+      <WhatWeDo />
       <Problem />
       <Workforce />
       <Coverage />
@@ -73,66 +74,163 @@ function Home() {
 function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-hero grain pt-32 pb-20 md:pt-40 md:pb-28">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute right-0 top-1/4 h-[560px] w-[560px] translate-x-1/3 rounded-full bg-primary/10 blur-[140px]" />
-      </div>
-      <div className="mx-auto grid max-w-6xl gap-14 px-5 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div className="mx-auto grid max-w-6xl gap-14 px-5 md:px-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
         <div>
-          <Eyebrow>AI automation agency for service businesses</Eyebrow>
+          <Eyebrow>AI automation agency for local &amp; service businesses</Eyebrow>
           <h1 className="animate-fade-up mt-4 text-4xl leading-[1.07] md:text-5xl lg:text-[3.4rem]">
-            AI employees that help your business{" "}
-            <span className="text-gradient-gold">answer, follow up &amp; book customers 24/7.</span>
+            AI employees and automation systems that{" "}
+            <span className="text-gradient-gold">respond faster, follow up, and book more work.</span>
           </h1>
           <p className="animate-fade-up mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            ApexGrowth builds digital workers for contractors and service businesses — systems that pick up the calls your team
-            can't, chase the estimates that go quiet, and put booked jobs on your calendar while you're on the roof, under the
-            sink, or asleep.
+            ApexGrowth builds AI employees and connected automations for local and service businesses — systems that answer
+            every inquiry, qualify and schedule it, keep follow-up consistent, and cut the manual work your team does by hand.
           </p>
           <div className="animate-fade-up mt-9 flex flex-col gap-3 sm:flex-row">
             <PrimaryCta location="home-hero" />
-            <SecondaryCta location="home-hero" />
+            <a
+              href="#what-we-do"
+              data-cta="secondary"
+              data-cta-location="home-hero"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-card px-7 py-3.5 text-sm font-medium text-foreground transition hover:border-primary/60 hover:text-primary"
+            >
+              See What We Do
+            </a>
           </div>
           <p className="mt-6 text-xs uppercase tracking-[0.18em] text-muted-foreground">
             Serving service businesses across the United States
           </p>
         </div>
         <Reveal delay={120}>
-          <ReceptionistCard />
+          <OperationsFlow />
         </Reveal>
       </div>
     </section>
   );
 }
 
-function ReceptionistCard() {
-  const lines = [
-    { who: "Caller", text: "Hi — my water heater is leaking everywhere.", muted: true },
-    { who: "AI Receptionist", text: "I can help. Is the water actively running right now?" },
-    { who: "Caller", text: "Yes, it's all over the floor.", muted: true },
-    { who: "AI Receptionist", text: "Marking this urgent. I've got your address and I'm alerting the on-call tech now." },
-  ];
+const OPS_INPUTS = ["Calls", "Web Leads", "Missed Calls", "Form Submissions"];
+const OPS_OUTCOMES = [
+  { t: "Qualification", d: "Intake questions asked, urgency scored" },
+  { t: "Scheduling", d: "Booked into your calendar" },
+  { t: "CRM Update", d: "Contact and job details written back" },
+  { t: "Follow-Up", d: "Sequenced until answered or closed" },
+  { t: "Booked Work", d: "Job on the schedule, team notified" },
+];
+
+function OperationsFlow() {
   return (
-    <div className="rounded-3xl border border-border bg-card/60 p-6 shadow-gold/10 backdrop-blur md:p-8">
+    <div className="rounded-3xl border border-border bg-card p-6 shadow-elegant md:p-8">
       <div className="flex items-center justify-between border-b border-border pb-4">
-        <div className="text-xs uppercase tracking-[0.18em] text-gold-soft">Incoming call · 11:42 PM</div>
+        <div className="text-xs font-medium uppercase tracking-[0.18em] text-primary">AI Operations</div>
         <span className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-primary" /> Answered
+          <span className="h-2 w-2 rounded-full bg-green" style={{ animation: "pulse-soft 2.4s ease-in-out infinite" }} />
+          Live · 24/7
         </span>
       </div>
-      <div className="mt-5 space-y-4">
-        {lines.map((l) => (
-          <div key={l.text} className={`max-w-[92%] rounded-2xl border p-4 text-sm leading-relaxed ${l.muted ? "border-border bg-background/50 text-muted-foreground" : "ml-auto border-primary/30 bg-primary/5 text-foreground"}`}>
-            <div className="text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground/70">{l.who}</div>
-            <div className="mt-1.5">{l.text}</div>
+
+      <div className="mt-6 grid gap-5 md:grid-cols-[0.9fr_auto_1.1fr] md:items-center">
+        <ul className="space-y-2.5">
+          {OPS_INPUTS.map((i) => (
+            <li
+              key={i}
+              className="flex items-center justify-between rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground"
+            >
+              {i}
+              <span className="h-1.5 w-1.5 rounded-full bg-primary/60" aria-hidden="true" />
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center justify-center" aria-hidden="true">
+          <svg width="56" height="140" viewBox="0 0 56 140" className="hidden md:block text-primary/45" fill="none">
+            {[24, 52, 80, 108].map((y) => (
+              <path key={y} d={`M0 ${y} C 28 ${y}, 28 70, 56 70`} stroke="currentColor" strokeWidth="1.25" />
+            ))}
+          </svg>
+          <div className="h-8 w-px bg-primary/30 md:hidden" />
+        </div>
+
+        <div>
+          <div className="rounded-2xl border border-primary/30 bg-primary/5 px-5 py-4">
+            <div className="text-sm font-semibold text-foreground">ApexGrowth AI Operations Hub</div>
+            <div className="mt-1 text-xs leading-relaxed text-muted-foreground">
+              Routing, qualification, and follow-up logic configured around your workflow
+            </div>
           </div>
-        ))}
-      </div>
-      <div className="mt-6 rounded-2xl border border-border bg-background/60 p-4 text-xs text-muted-foreground">
-        Emergency escalated · Job details captured · Summary sent to the office
+          <ul className="mt-4 space-y-2">
+            {OPS_OUTCOMES.map((o) => (
+              <li key={o.t} className="flex items-start gap-3 rounded-xl border border-border bg-background px-4 py-2.5">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-green" aria-hidden="true" />
+                <span>
+                  <span className="block text-sm text-foreground">{o.t}</span>
+                  <span className="block text-xs text-muted-foreground">{o.d}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
 }
+
+const PILLARS = [
+  {
+    n: "01",
+    k: "AI Employees",
+    c: "AI receptionists and digital workers that answer, qualify, schedule, and follow up.",
+    label: "Explore AI Employees",
+    to: "/ai-employees",
+  },
+  {
+    n: "02",
+    k: "Automations",
+    c: "Connect repetitive workflows so your team spends less time on manual work.",
+    label: "Explore Automations",
+    to: "/automations",
+  },
+  {
+    n: "03",
+    k: "Websites & Growth",
+    c: "High-converting websites, landing pages, SEO, and lead-generation infrastructure.",
+    label: "Explore Websites",
+    to: "/growth-services",
+  },
+] as const;
+
+function WhatWeDo() {
+  return (
+    <Section id="what-we-do">
+      <SectionHeading
+        eyebrow="What we do"
+        title="Build the systems that help your business grow."
+        center={false}
+      />
+      <div className="mt-14 divide-y divide-border border-y border-border">
+        {PILLARS.map((p, i) => (
+          <Reveal key={p.n} delay={i * 80}>
+            <div className="grid gap-6 py-10 md:grid-cols-[auto_1fr_auto] md:items-center md:gap-12 md:py-14">
+              <div className="text-sm font-medium tracking-[0.18em] text-primary/70">{p.n}</div>
+              <div className="max-w-2xl">
+                <h3 className="text-2xl leading-snug text-foreground md:text-3xl">{p.k}</h3>
+                <p className="mt-3 leading-relaxed text-muted-foreground">{p.c}</p>
+              </div>
+              <Link
+                to={p.to}
+                data-cta="secondary"
+                data-cta-location="home-what-we-do"
+                className="group inline-flex items-center gap-2 text-sm font-medium text-primary transition hover:gap-3"
+              >
+                {p.label} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 
 const LEAKS = [
   { icon: PhoneOff, t: "Calls after hours", c: "High-intent callers reach voicemail and dial the next company on the list." },
