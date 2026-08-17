@@ -18,7 +18,7 @@ export function AgentSection({ agent, link }: { agent: Agent; link?: string }) {
           </div>
           {link && (
             <Link
-              to={link}
+              to={link as never}
               className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border px-6 py-3 text-sm transition hover:border-primary/60"
             >
               Full details <ArrowRight className="h-4 w-4" />
