@@ -84,25 +84,37 @@ function Page() {
           eyebrow="Meet the team"
           title="Five digital teammates."
           intro="Each one is built and configured around your workflow, scripts, and systems. Start with one — most businesses do — and add the others as they earn their place."
+          center={false}
         />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 border-t border-border">
           {AGENTS.map((a, i) => (
-            <Reveal key={a.slug} delay={(i % 3) * 70}>
+            <Reveal key={a.slug} delay={(i % 3) * 60}>
               <a
                 href={`#${a.slug}`}
-                className="flex h-full flex-col rounded-2xl border border-border bg-background/50 p-6 transition hover:-translate-y-1 hover:border-primary/40"
+                className="group grid items-baseline gap-x-8 gap-y-2 border-b border-border py-6 transition hover:bg-card/70 md:grid-cols-[auto_minmax(0,16rem)_1fr_auto] md:items-center md:px-2"
               >
-                <div className="text-xs font-medium uppercase tracking-[0.15em] text-primary">{a.flagship ? "Flagship" : "AI employee"}</div>
-                <h3 className="mt-2 text-lg">{a.name}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{a.tagline}</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-sm text-primary">
-                  Read more <ArrowRight className="h-4 w-4" />
+                <span className="text-xs tracking-[0.16em] text-primary/70">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="flex flex-wrap items-center gap-2">
+                  <span className="text-base font-semibold text-foreground">{a.name}</span>
+                  {a.flagship && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/5 px-2.5 py-0.5 text-[0.65rem] font-medium uppercase tracking-[0.14em] text-primary">
+                      <span className="h-1.5 w-1.5 rounded-full bg-green" aria-hidden="true" /> Flagship
+                    </span>
+                  )}
+                </span>
+                <span className="text-sm leading-relaxed text-muted-foreground">{a.tagline}</span>
+                <span className="inline-flex items-center gap-2 text-sm font-medium text-primary md:justify-self-end">
+                  Read more{" "}
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
                 </span>
               </a>
             </Reveal>
           ))}
         </div>
       </Section>
+
 
       <Section>
         {AGENTS.map((a) => (
