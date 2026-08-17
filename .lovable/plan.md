@@ -51,7 +51,7 @@ Split out later, only when a section has enough unique proof/content: `/ai-emplo
 1. `WorkflowFlow` — vertical/horizontal step chain with connectors (receptionist, lead agent, follow-up, missed-call, review, roofing). One component, data-driven.
 2. `CoverageTimeline` — side-by-side "Traditional coverage" vs "With digital coverage" 8:00 AM → 7:45 PM → next morning. The flagship visual on the homepage and receptionist page.
 3. `TeamGrid` — Your Team + Your Digital Workforce, joined by a connector, never adversarial.
-4. `CapabilityList` — capability rows with an "available now" / "assessment required" badge.
+4. `CapabilityList` — clean capability rows, no availability badges. Where a system is custom-built, the section intro says so in plain language ("configured around your call scripts, service area, and systems").
 5. All animate through the existing `Reveal` component; no new animation library.
 
 ## Page-by-page
