@@ -34,7 +34,7 @@ const legal = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background py-16">
+    <footer className="border-t border-border bg-card py-16 md:py-20">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 md:px-8 lg:grid-cols-5">
         <div className="lg:col-span-2">
           <Logo size={38} />
@@ -43,7 +43,7 @@ export function Footer() {
           </p>
           <a
             href="/ai-audit"
-            className="mt-6 inline-flex rounded-full bg-gold-gradient px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-gold transition hover:opacity-90"
+            className="mt-6 inline-flex rounded-full bg-gold-gradient px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-gold transition hover:opacity-90"
           >
             Get a Free AI Audit
           </a>
@@ -92,7 +92,7 @@ export function Footer() {
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <div className="text-xs uppercase tracking-[0.2em] text-gold-soft">{title}</div>
+      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground">{title}</div>
       <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">{children}</ul>
     </div>
   );
