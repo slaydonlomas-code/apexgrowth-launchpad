@@ -34,16 +34,17 @@ const legal = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background py-16">
+    <footer className="border-t border-border bg-card py-16 md:py-20">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 md:px-8 lg:grid-cols-5">
         <div className="lg:col-span-2">
           <Logo size={38} />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-            ApexGrowth designs high-converting websites and digital growth systems for businesses across the United States.
+            ApexGrowth designs high-converting websites and digital growth systems for businesses
+            across the United States.
           </p>
           <a
             href="/ai-audit"
-            className="mt-6 inline-flex rounded-full bg-gold-gradient px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-gold transition hover:opacity-90"
+            className="mt-6 inline-flex rounded-full bg-gold-gradient px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-gold transition hover:opacity-90"
           >
             Get a Free AI Audit
           </a>
@@ -51,13 +52,21 @@ export function Footer() {
 
         <FooterCol title="Company">
           {company.map((c) => (
-            <li key={c.label}><a href={c.href} className="transition hover:text-foreground">{c.label}</a></li>
+            <li key={c.label}>
+              <a href={c.href} className="transition hover:text-foreground">
+                {c.label}
+              </a>
+            </li>
           ))}
         </FooterCol>
 
         <FooterCol title="Services">
           {services.map((s) => (
-            <li key={s}><a href="/#services" className="transition hover:text-foreground">{s}</a></li>
+            <li key={s}>
+              <a href="/#services" className="transition hover:text-foreground">
+                {s}
+              </a>
+            </li>
           ))}
         </FooterCol>
 
@@ -65,15 +74,33 @@ export function Footer() {
           <FooterCol title="Legal">
             {legal.map((l) => (
               <li key={l.to}>
-                <Link to={l.to} className="transition hover:text-foreground">{l.label}</Link>
+                <Link to={l.to} className="transition hover:text-foreground">
+                  {l.label}
+                </Link>
               </li>
             ))}
           </FooterCol>
           <FooterCol title="Contact">
-            <li><a href="tel:3373853084" className="transition hover:text-foreground">337-385-3084</a></li>
-            <li><a href="mailto:apexgrowthsolutions@gmail.com" className="break-all transition hover:text-foreground">apexgrowthsolutions@gmail.com</a></li>
             <li>
-              <a href="https://calendly.com/slaydon-lomas/30min" target="_blank" rel="noreferrer" className="transition hover:text-foreground">
+              <a href="tel:3373853084" className="transition hover:text-foreground">
+                337-385-3084
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:apexgrowthsolutions@gmail.com"
+                className="break-all transition hover:text-foreground"
+              >
+                apexgrowthsolutions@gmail.com
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://calendly.com/slaydon-lomas/30min"
+                target="_blank"
+                rel="noreferrer"
+                className="transition hover:text-foreground"
+              >
                 Schedule on Calendly
               </a>
             </li>
@@ -92,7 +119,9 @@ export function Footer() {
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <div className="text-xs uppercase tracking-[0.2em] text-gold-soft">{title}</div>
+      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground">
+        {title}
+      </div>
       <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">{children}</ul>
     </div>
   );

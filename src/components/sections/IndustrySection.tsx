@@ -5,7 +5,10 @@ import type { Industry } from "@/content/industries";
 
 export function IndustrySection({ industry }: { industry: Industry }) {
   return (
-    <div id={industry.slug} className="scroll-mt-24 border-t border-border py-16 first:border-t-0 first:pt-0 md:py-20">
+    <div
+      id={industry.slug}
+      className="scroll-mt-24 border-t border-border py-16 first:border-t-0 first:pt-0 md:py-20"
+    >
       <Reveal>
         <div className="max-w-2xl">
           <div className="text-xs uppercase tracking-[0.2em] text-gold-soft">{industry.name}</div>

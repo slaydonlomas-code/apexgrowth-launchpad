@@ -34,9 +34,12 @@ export function CookieBanner() {
             <Cookie className="h-4 w-4 text-primary" />
           </span>
           <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
-            We use cookies to keep this site working and to understand how it's used. You can accept all cookies or continue with
-            necessary cookies only. Read our{" "}
-            <Link to="/cookie-policy" className="text-primary underline underline-offset-2">Cookie Policy</Link>.
+            We use cookies to keep this site working and to understand how it's used. You can accept
+            all cookies or continue with necessary cookies only. Read our{" "}
+            <Link to="/cookie-policy" className="text-primary underline underline-offset-2">
+              Cookie Policy
+            </Link>
+            .
           </p>
         </div>
         <div className="flex shrink-0 gap-2 md:ml-auto">
