@@ -359,7 +359,7 @@ function Workforce() {
     <Section id="how-it-works">
       <SectionHeading
         eyebrow="The idea"
-        title="Give your team digital teammates."
+        title="Automate the work slowing your team down."
         intro="Your people handle relationships, judgment, and the work itself. Digital workers handle answering, qualifying, scheduling, CRM updates, and follow-up — every hour of every day, exactly the same way."
       />
       <div className="mt-14">
