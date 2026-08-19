@@ -42,6 +42,7 @@ export function ContactForm({ source = "Website" }: { source?: string } = {}) {
         throw new Error(msg);
       }
       setDone(true);
+      trackEvent("generate_lead", { form_source: source });
       toast.success("Thank you! Your request has been received. We'll be in touch shortly.");
       form.reset();
     } catch (err) {
