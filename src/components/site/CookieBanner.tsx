@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Cookie } from "lucide-react";
+import { initAnalytics, CONSENT_KEY } from "@/lib/analytics";
 
-const KEY = "apexgrowth-cookie-consent";
+const KEY = CONSENT_KEY;
 
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -21,6 +22,7 @@ export function CookieBanner() {
     } catch {
       // ignore
     }
+    if (value === "accepted") initAnalytics();
     setVisible(false);
   };
 

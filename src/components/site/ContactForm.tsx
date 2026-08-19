@@ -1,6 +1,7 @@
 import { useId, useState } from "react";
 import { toast } from "sonner";
 import { Loader2, Send } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const budgets = ["Under $1K", "$1K–$3K", "$3K–$6K", "$6K–$15K", "$15K+"];
 
