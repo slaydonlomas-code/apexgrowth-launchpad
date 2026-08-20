@@ -9,6 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, useRef, type ReactNode } from "react";
+import * as Sentry from "@sentry/tanstackstart-react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
