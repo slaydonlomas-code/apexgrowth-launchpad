@@ -29,9 +29,10 @@ import { INDUSTRIES } from "@/content/industries";
 import { CONTACT } from "@/content/site";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
-const TITLE = "ApexGrowth — AI Employees for Service Businesses";
+const TITLE = "ApexGrowth | AI Automation, Websites & Growth";
 const DESCRIPTION =
-  "ApexGrowth builds AI employees and automations that answer calls, follow up on estimates, and book customers 24/7 for contractors and service businesses across the United States.";
+  "AI employees, business automations, and high-converting websites built for service businesses.";
+
 
 const FAQS: FaqItem[] = [
   {
@@ -79,13 +80,19 @@ export const Route = createFileRoute("/")({
         { name: "description", content: DESCRIPTION },
         { property: "og:title", content: TITLE },
         { property: "og:description", content: DESCRIPTION },
+        { property: "og:type", content: "website" },
         { property: "og:url", content: `${origin}/` },
         { property: "og:image", content: ogImage },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:alt", content: "ApexGrowth — AI Employees. Automations. Websites." },
+        { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: TITLE },
         { name: "twitter:description", content: DESCRIPTION },
         { name: "twitter:image", content: ogImage },
       ],
       links: [{ rel: "canonical", href: `${origin}/` }],
+
       scripts: [{ type: "application/ld+json", children: JSON.stringify(faqSchema(FAQS)) }],
     };
   },
