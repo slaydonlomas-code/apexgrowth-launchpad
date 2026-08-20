@@ -63,17 +63,17 @@ function bindCalendlyTracking() {
 export function initAnalytics() {
   if (typeof window === "undefined") return;
   if (installed || !MEASUREMENT_ID || !hasConsent()) return;
-  if (document.querySelector(`script[data-ga-id="${MEASUREMENT_ID}"]`)) {
-    installed = true;
-    return;
-  }
   installed = true;
 
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
-  script.dataset.gaId = MEASUREMENT_ID;
-  document.head.appendChild(script);
+  ensureGtag();
+
+  if (!document.querySelector(`script[data-ga-id="${MEASUREMENT_ID}"]`)) {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
+    script.dataset.gaId = MEASUREMENT_ID;
+    document.head.appendChild(script);
+  }
 
   gtag("js", new Date());
   gtag("config", MEASUREMENT_ID, { send_page_view: false });
