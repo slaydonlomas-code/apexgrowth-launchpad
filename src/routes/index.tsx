@@ -29,9 +29,10 @@ import { INDUSTRIES } from "@/content/industries";
 import { CONTACT } from "@/content/site";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
-const TITLE = "ApexGrowth — AI Employees for Service Businesses";
+const TITLE = "ApexGrowth | AI Automation, Websites & Growth";
 const DESCRIPTION =
-  "ApexGrowth builds AI employees and automations that answer calls, follow up on estimates, and book customers 24/7 for contractors and service businesses across the United States.";
+  "AI employees, business automations, and high-converting websites built for service businesses.";
+
 
 const FAQS: FaqItem[] = [
   {
