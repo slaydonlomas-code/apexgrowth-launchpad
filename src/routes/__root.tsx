@@ -13,6 +13,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
+import { initCalendlyPopup } from "@/lib/calendly";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -139,6 +140,7 @@ function RootComponent() {
 
   useEffect(() => {
     initAnalytics();
+    initCalendlyPopup();
   }, []);
 
   const firstRun = useRef(true);
