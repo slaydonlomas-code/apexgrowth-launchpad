@@ -140,6 +140,7 @@ function RootComponent() {
 
   useEffect(() => {
     initAnalytics();
+    initCalendlyPopup();
   }, []);
 
   const firstRun = useRef(true);
