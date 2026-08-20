@@ -23,10 +23,24 @@ function hasConsent() {
   }
 }
 
+/**
+ * Standard gtag.js shim — pushes the raw `arguments` object (not an array),
+ * which is what Google's tag expects when it replays the queue.
+ */
+function ensureGtag(): (...args: unknown[]) => void {
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== "function") {
+    window.gtag = function gtagShim() {
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer!.push(arguments);
+    } as (...args: unknown[]) => void;
+  }
+  return window.gtag;
+}
+
 export function gtag(...args: unknown[]) {
   if (typeof window === "undefined") return;
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(args);
+  ensureGtag()(...args);
 }
 
 function bindCalendlyTracking() {
@@ -49,17 +63,17 @@ function bindCalendlyTracking() {
 export function initAnalytics() {
   if (typeof window === "undefined") return;
   if (installed || !MEASUREMENT_ID || !hasConsent()) return;
-  if (document.querySelector(`script[data-ga-id="${MEASUREMENT_ID}"]`)) {
-    installed = true;
-    return;
-  }
   installed = true;
 
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
-  script.dataset.gaId = MEASUREMENT_ID;
-  document.head.appendChild(script);
+  ensureGtag();
+
+  if (!document.querySelector(`script[data-ga-id="${MEASUREMENT_ID}"]`)) {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
+    script.dataset.gaId = MEASUREMENT_ID;
+    document.head.appendChild(script);
+  }
 
   gtag("js", new Date());
   gtag("config", MEASUREMENT_ID, { send_page_view: false });
@@ -67,8 +81,12 @@ export function initAnalytics() {
   bindCalendlyTracking();
 }
 
+let lastPath: string | null = null;
+
 export function trackPageView(path: string) {
   if (!installed) return;
+  if (path === lastPath) return; // avoid duplicate page views for the same path
+  lastPath = path;
   gtag("event", "page_view", {
     page_path: path,
     page_location: window.location.href,
