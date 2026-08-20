@@ -23,10 +23,19 @@ function hasConsent() {
   }
 }
 
+/** Standard gtag.js shim: pushes the raw `arguments` object onto dataLayer. */
 export function gtag(...args: unknown[]) {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(args);
+  // eslint-disable-next-line prefer-rest-params
+  window.dataLayer.push(arguments);
+}
+
+function ensureGtag() {
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== "function") {
+    window.gtag = gtag;
+  }
 }
 
 function bindCalendlyTracking() {
