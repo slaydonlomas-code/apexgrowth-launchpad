@@ -81,8 +81,12 @@ export function initAnalytics() {
   bindCalendlyTracking();
 }
 
+let lastPath: string | null = null;
+
 export function trackPageView(path: string) {
   if (!installed) return;
+  if (path === lastPath) return; // avoid duplicate page views for the same path
+  lastPath = path;
   gtag("event", "page_view", {
     page_path: path,
     page_location: window.location.href,
