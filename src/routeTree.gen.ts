@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SentryTestRouteImport } from './routes/sentry-test'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as GrowthServicesRouteImport } from './routes/growth-services'
@@ -35,6 +36,11 @@ const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SentryTestRoute = SentryTestRouteImport.update({
+  id: '/sentry-test',
+  path: '/sentry-test',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -126,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/growth-services': typeof GrowthServicesRoute
   '/industries': typeof IndustriesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/sentry-test': typeof SentryTestRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/growth-services': typeof GrowthServicesRoute
   '/industries': typeof IndustriesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/sentry-test': typeof SentryTestRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/growth-services': typeof GrowthServicesRoute
   '/industries': typeof IndustriesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/sentry-test': typeof SentryTestRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
     | '/growth-services'
     | '/industries'
     | '/privacy-policy'
+    | '/sentry-test'
     | '/sitemap.xml'
     | '/terms-and-conditions'
     | '/ai-employees/ai-receptionist'
@@ -203,6 +213,7 @@ export interface FileRouteTypes {
     | '/growth-services'
     | '/industries'
     | '/privacy-policy'
+    | '/sentry-test'
     | '/sitemap.xml'
     | '/terms-and-conditions'
     | '/ai-employees/ai-receptionist'
@@ -222,6 +233,7 @@ export interface FileRouteTypes {
     | '/growth-services'
     | '/industries'
     | '/privacy-policy'
+    | '/sentry-test'
     | '/sitemap.xml'
     | '/terms-and-conditions'
     | '/ai-employees/ai-receptionist'
@@ -242,6 +254,7 @@ export interface RootRouteChildren {
   GrowthServicesRoute: typeof GrowthServicesRoute
   IndustriesRoute: typeof IndustriesRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  SentryTestRoute: typeof SentryTestRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
@@ -262,6 +275,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sentry-test': {
+      id: '/sentry-test'
+      path: '/sentry-test'
+      fullPath: '/sentry-test'
+      preLoaderRoute: typeof SentryTestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -398,6 +418,7 @@ const rootRouteChildren: RootRouteChildren = {
   GrowthServicesRoute: GrowthServicesRoute,
   IndustriesRoute: IndustriesRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  SentryTestRoute: SentryTestRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
