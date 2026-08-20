@@ -23,19 +23,24 @@ function hasConsent() {
   }
 }
 
-/** Standard gtag.js shim: pushes the raw `arguments` object onto dataLayer. */
-export function gtag(...args: unknown[]) {
-  if (typeof window === "undefined") return;
-  window.dataLayer = window.dataLayer || [];
-  // eslint-disable-next-line prefer-rest-params
-  window.dataLayer.push(arguments);
-}
-
-function ensureGtag() {
+/**
+ * Standard gtag.js shim — pushes the raw `arguments` object (not an array),
+ * which is what Google's tag expects when it replays the queue.
+ */
+function ensureGtag(): (...args: unknown[]) => void {
   window.dataLayer = window.dataLayer || [];
   if (typeof window.gtag !== "function") {
-    window.gtag = gtag;
+    window.gtag = function gtagShim() {
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer!.push(arguments);
+    } as (...args: unknown[]) => void;
   }
+  return window.gtag;
+}
+
+export function gtag(...args: unknown[]) {
+  if (typeof window === "undefined") return;
+  ensureGtag()(...args);
 }
 
 function bindCalendlyTracking() {
