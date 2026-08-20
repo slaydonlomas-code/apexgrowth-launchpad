@@ -74,8 +74,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#111111" },
-      { title: "ApexGrowth — Premium Websites & Lead Generation for Local Business" },
-      { name: "description", content: "ApexGrowth builds high-converting websites, lead generation systems, and growth automation for local and service-based businesses." },
+      { title: "ApexGrowth | AI Automation, Websites & Growth" },
+      { name: "description", content: "AI employees, business automations, and high-converting websites built for service businesses." },
+
       { name: "author", content: "ApexGrowth" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "ApexGrowth" },
