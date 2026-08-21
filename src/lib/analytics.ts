@@ -1,9 +1,7 @@
 // Google Analytics (GA4) — single gtag.js install, consent-gated.
 export const CONSENT_KEY = "apexgrowth-cookie-consent";
 
-const MEASUREMENT_ID =
-  (import.meta.env.VITE_LOVABLE_CONNECTOR_GOOGLE_ANALYTICS_API_KEY as string | undefined) ||
-  "G-CTSC7LVXZP";
+const MEASUREMENT_ID = "G-CTSC7LVXZP";
 
 declare global {
   interface Window {
@@ -62,10 +60,14 @@ function bindCalendlyTracking() {
 /** Loads gtag.js exactly once, only when the visitor accepted cookies. */
 export function initAnalytics() {
   if (typeof window === "undefined") return;
-  if (installed || !MEASUREMENT_ID || !hasConsent()) return;
+  if (installed || !hasConsent()) return;
   installed = true;
 
-  ensureGtag();
+  // Create both globals synchronously, then queue Google's bootstrap commands
+  // before the asynchronous external script is added to the document.
+  const browserGtag = ensureGtag();
+  browserGtag("js", new Date());
+  browserGtag("config", MEASUREMENT_ID, { send_page_view: false });
 
   if (!document.querySelector(`script[data-ga-id="${MEASUREMENT_ID}"]`)) {
     const script = document.createElement("script");
@@ -75,8 +77,7 @@ export function initAnalytics() {
     document.head.appendChild(script);
   }
 
-  gtag("js", new Date());
-  gtag("config", MEASUREMENT_ID, { send_page_view: false });
+  // Consent should produce one immediate page view without requiring navigation.
   trackPageView(window.location.pathname + window.location.search);
   bindCalendlyTracking();
 }
