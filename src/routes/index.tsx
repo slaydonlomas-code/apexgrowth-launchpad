@@ -104,6 +104,8 @@ function Home() {
     <PageShell>
       <Hero />
       <WhatWeDo />
+      <CalculatorPromo />
+
       <Problem />
       <Workforce />
       <Coverage />
@@ -248,7 +250,36 @@ function OperationsFlow() {
   );
 }
 
+function CalculatorPromo() {
+  return (
+    <section className="border-y border-border bg-card/40 py-14 md:py-16">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="max-w-2xl">
+          <div className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+            Free tool
+          </div>
+          <h2 className="mt-3 text-2xl leading-snug text-foreground md:text-3xl">
+            See what missed follow-up and manual admin may be costing you.
+          </h2>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            A short, private estimate that runs entirely in your browser — no email required.
+          </p>
+        </div>
+        <Link
+          to="/resources/automation-savings-calculator"
+          data-cta="secondary"
+          data-cta-location="home-calculator-promo"
+          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-gold transition hover:opacity-90"
+        >
+          Calculate Your Potential Savings <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 const PILLARS = [
+
   {
     n: "01",
     k: "AI Employees",
