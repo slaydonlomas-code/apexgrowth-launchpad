@@ -63,9 +63,7 @@ function Page() {
           { label: "Resources", to: "/resources" },
           { label: "Automation Savings Calculator" },
         ]}
-      >
-        <span className="sr-only">Scroll to the calculator below</span>
-      </PageHero>
+      />
 
       <Section>
         <SavingsCalculator />
