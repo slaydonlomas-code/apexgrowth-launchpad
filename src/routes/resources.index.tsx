@@ -42,7 +42,32 @@ function Page() {
       />
 
       <Section>
+        <Reveal>
+          <Link
+            to="/resources/automation-savings-calculator"
+            className="group mb-8 flex flex-col gap-4 rounded-2xl border border-primary/30 bg-card/60 p-8 transition hover:border-primary/60 md:flex-row md:items-center md:justify-between"
+          >
+            <div className="max-w-2xl">
+              <div className="text-xs font-medium uppercase tracking-[0.16em] text-primary">
+                Featured · Free tool
+              </div>
+              <h2 className="mt-3 text-xl leading-snug text-foreground md:text-2xl">
+                Automation Savings Calculator
+              </h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Estimate the time, labor costs, and revenue opportunities better follow-up and
+                workflow automation could address. Runs entirely in your browser.
+              </p>
+            </div>
+            <span className="inline-flex shrink-0 items-center gap-2 text-sm text-primary">
+              Open the calculator{" "}
+              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+            </span>
+          </Link>
+        </Reveal>
+
         <div className="grid gap-5 md:grid-cols-2">
+
           {RESOURCES.map((r, i) => (
             <Reveal key={r.slug} delay={(i % 2) * 90}>
               <Link

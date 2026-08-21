@@ -1,4 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+
 import { PageShell, PageHero, Section, SectionHeading, CtaBand } from "@/components/site/PageShell";
 import { AutomationSection } from "@/components/sections/AutomationSection";
 import { AUTOMATIONS } from "@/content/automations";
@@ -52,6 +54,28 @@ function Page() {
         intro="Automations handle the repeatable steps between a lead coming in and a job getting closed — the ones that quietly get skipped when the schedule fills up."
         breadcrumbs={[{ label: "Home", to: "/" }, { label: "Automations" }]}
       />
+
+      <section className="border-b border-border bg-card/40 py-12">
+        <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 md:flex-row md:items-center md:justify-between md:px-8">
+          <div className="max-w-xl">
+            <h2 className="text-xl leading-snug text-foreground md:text-2xl">
+              Not sure which gap costs you most?
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Estimate the potential monthly opportunity in your follow-up and admin time.
+            </p>
+          </div>
+          <Link
+            to="/resources/automation-savings-calculator"
+            data-cta="secondary"
+            data-cta-location="automations-calculator"
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-border bg-background px-6 py-3 text-sm font-medium text-foreground transition hover:border-primary/60"
+          >
+            Calculate Your Potential Savings <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
 
       <Section>
         <SectionHeading
