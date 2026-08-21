@@ -25,6 +25,7 @@ import { Route as AccessibilityStatementRouteImport } from './routes/accessibili
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as AiEmployeesIndexRouteImport } from './routes/ai-employees.index'
+import { Route as ResourcesAutomationSavingsCalculatorRouteImport } from './routes/resources.automation-savings-calculator'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as AiEmployeesAiReceptionistRouteImport } from './routes/ai-employees.ai-receptionist'
 
@@ -108,6 +109,12 @@ const AiEmployeesIndexRoute = AiEmployeesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AiEmployeesRoute,
 } as any)
+const ResourcesAutomationSavingsCalculatorRoute =
+  ResourcesAutomationSavingsCalculatorRouteImport.update({
+    id: '/resources/automation-savings-calculator',
+    path: '/resources/automation-savings-calculator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ResourcesSlugRoute = ResourcesSlugRouteImport.update({
   id: '/resources/$slug',
   path: '/resources/$slug',
@@ -137,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/automation-savings-calculator': typeof ResourcesAutomationSavingsCalculatorRoute
   '/ai-employees/': typeof AiEmployeesIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
@@ -156,6 +164,7 @@ export interface FileRoutesByTo {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/automation-savings-calculator': typeof ResourcesAutomationSavingsCalculatorRoute
   '/ai-employees': typeof AiEmployeesIndexRoute
   '/resources': typeof ResourcesIndexRoute
 }
@@ -177,6 +186,7 @@ export interface FileRoutesById {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
   '/resources/$slug': typeof ResourcesSlugRoute
+  '/resources/automation-savings-calculator': typeof ResourcesAutomationSavingsCalculatorRoute
   '/ai-employees/': typeof AiEmployeesIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
@@ -199,6 +209,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/ai-employees/ai-receptionist'
     | '/resources/$slug'
+    | '/resources/automation-savings-calculator'
     | '/ai-employees/'
     | '/resources/'
   fileRoutesByTo: FileRoutesByTo
@@ -218,6 +229,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/ai-employees/ai-receptionist'
     | '/resources/$slug'
+    | '/resources/automation-savings-calculator'
     | '/ai-employees'
     | '/resources'
   id:
@@ -238,6 +250,7 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/ai-employees/ai-receptionist'
     | '/resources/$slug'
+    | '/resources/automation-savings-calculator'
     | '/ai-employees/'
     | '/resources/'
   fileRoutesById: FileRoutesById
@@ -258,6 +271,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
+  ResourcesAutomationSavingsCalculatorRoute: typeof ResourcesAutomationSavingsCalculatorRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
@@ -375,6 +389,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiEmployeesIndexRouteImport
       parentRoute: typeof AiEmployeesRoute
     }
+    '/resources/automation-savings-calculator': {
+      id: '/resources/automation-savings-calculator'
+      path: '/resources/automation-savings-calculator'
+      fullPath: '/resources/automation-savings-calculator'
+      preLoaderRoute: typeof ResourcesAutomationSavingsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources/$slug': {
       id: '/resources/$slug'
       path: '/resources/$slug'
@@ -422,6 +443,8 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   ResourcesSlugRoute: ResourcesSlugRoute,
+  ResourcesAutomationSavingsCalculatorRoute:
+    ResourcesAutomationSavingsCalculatorRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
 }
 export const routeTree = rootRouteImport
