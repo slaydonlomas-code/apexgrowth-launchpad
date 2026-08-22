@@ -159,9 +159,9 @@ export function GrowthAssessment() {
           />
         </div>
 
-        <fieldset className="mt-7 min-w-0">
-          <legend className="sr-only">{question.prompt}</legend>
+        <fieldset className="mt-7 min-w-0" aria-labelledby={`${question.id}-prompt`}>
           <h2
+            id={`${question.id}-prompt`}
             ref={headingRef}
             tabIndex={-1}
             aria-live="polite"
