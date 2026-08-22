@@ -303,25 +303,29 @@ function Field({
 }
 
 
-function Results({ results }: { results: ReturnType<typeof calculate> }) {
-  const rows = [
-    {
-      label: "Estimated missed or under-followed leads each month",
-      value: formatNumber(results.missedLeads, 1),
-    },
-    {
-      label: "Estimated monthly hours potentially saved",
-      value: `${formatNumber(results.hoursSaved, 1)} hrs`,
-    },
-    {
-      label: "Estimated monthly revenue opportunity",
-      value: formatCurrency(results.revenueOpportunity),
-    },
-    {
-      label: "Estimated monthly labor-time value",
-      value: formatCurrency(results.laborValue),
-    },
-  ];
+function Results({ results }: { results: ReturnType<typeof calculate> | null }) {
+  const rows = results
+    ? [
+        {
+          label: "Estimated missed or under-followed leads each month",
+          value: formatNumber(results.missedLeads, 1),
+        },
+        {
+          label: "Estimated monthly hours potentially saved",
+          value: `${formatNumber(results.hoursSaved, 1)} hrs`,
+        },
+        {
+          label: "Estimated monthly revenue opportunity",
+          value: formatCurrency(results.revenueOpportunity),
+        },
+        {
+          label: "Estimated monthly labor-time value",
+          value: formatCurrency(results.laborValue),
+        },
+      ]
+    : [];
+
+  const placeholder = "Complete all fields to see your estimate";
 
   return (
     <div className="lg:sticky lg:top-28 lg:self-start">
@@ -332,28 +336,39 @@ function Results({ results }: { results: ReturnType<typeof calculate> }) {
         <h2 className="mt-3 text-2xl text-foreground md:text-3xl">
           Estimated combined monthly opportunity
         </h2>
-        <div
-          className="mt-4 text-4xl font-semibold text-foreground md:text-5xl"
-          aria-live="polite"
-          role="status"
-        >
-          {formatCurrency(results.monthlyOpportunity)}
-        </div>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Estimated annual opportunity:{" "}
-          <span className="font-medium text-foreground">
-            {formatCurrency(results.annualOpportunity)}
-          </span>
-        </p>
-
-        <dl className="mt-8 divide-y divide-border border-y border-border">
-          {rows.map((r) => (
-            <div key={r.label} className="flex items-baseline justify-between gap-6 py-3.5">
-              <dt className="text-sm leading-snug text-muted-foreground">{r.label}</dt>
-              <dd className="shrink-0 text-sm font-medium text-foreground">{r.value}</dd>
+        {results ? (
+          <>
+            <div
+              className="mt-4 text-4xl font-semibold text-foreground md:text-5xl"
+              aria-live="polite"
+              role="status"
+            >
+              {formatCurrency(results.monthlyOpportunity)}
             </div>
-          ))}
-        </dl>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Estimated annual opportunity:{" "}
+              <span className="font-medium text-foreground">
+                {formatCurrency(results.annualOpportunity)}
+              </span>
+            </p>
+          </>
+        ) : (
+          <p className="mt-4 text-sm text-muted-foreground" aria-live="polite" role="status">
+            {placeholder}
+          </p>
+        )}
+
+        {results && (
+          <dl className="mt-8 divide-y divide-border border-y border-border">
+            {rows.map((r) => (
+              <div key={r.label} className="flex items-baseline justify-between gap-6 py-3.5">
+                <dt className="text-sm leading-snug text-muted-foreground">{r.label}</dt>
+                <dd className="shrink-0 text-sm font-medium text-foreground">{r.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+
 
         <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
           These estimates are illustrative and based on the information and assumptions entered.
