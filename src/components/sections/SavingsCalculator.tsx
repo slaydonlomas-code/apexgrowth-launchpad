@@ -72,28 +72,89 @@ const FIELDS: FieldDef[] = [
   },
 ];
 
+type Draft = Record<Key, string>;
+
+const KEYS = Object.keys(DEFAULT_INPUTS) as Key[];
+
+const toDraft = (inputs: CalculatorInputs): Draft =>
+  KEYS.reduce((acc, k) => {
+    acc[k] = String(inputs[k]);
+    return acc;
+  }, {} as Draft);
+
+/** Returns a number when the raw text is a complete, in-range value, else null. */
+function parseField(key: Key, raw: string): number | null {
+  const text = raw.trim();
+  if (text === "") return null;
+  if (!/^\d*(\.\d+)?$/.test(text)) return null;
+  const n = Number(text);
+  if (!Number.isFinite(n)) return null;
+  const { min, max } = LIMITS[key];
+  if (n < min || n > max) return null;
+  return n;
+}
+
+/** Strips unnecessary leading zeros while preserving 0 and decimals. */
+function normalize(raw: string): string {
+  const text = raw.trim();
+  if (text === "") return "";
+  if (!/^\d*(\.\d+)?$/.test(text)) return text;
+  const n = Number(text);
+  if (!Number.isFinite(n)) return text;
+  return String(n);
+}
+
 export function SavingsCalculator() {
-  const [inputs, setInputs] = useState<CalculatorInputs>(DEFAULT_INPUTS);
+  const [draft, setDraft] = useState<Draft>(() => toDraft(DEFAULT_INPUTS));
   const [advancedOpen, setAdvancedOpen] = useState(false);
   const started = useRef(false);
   const completed = useRef(false);
 
-  const results = useMemo(() => calculate(inputs), [inputs]);
-  const hasResults = results.monthlyOpportunity > 0;
+  const parsed = useMemo(() => {
+    const values = {} as CalculatorInputs;
+    for (const k of KEYS) {
+      const n = parseField(k, draft[k]);
+      if (n === null) return null;
+      values[k] = n;
+    }
+    return values;
+  }, [draft]);
+
+  const results = useMemo(() => (parsed ? calculate(parsed) : null), [parsed]);
+  const recoveryText = parseField("recoveryPct", draft.recoveryPct);
 
   useEffect(() => {
-    if (hasResults && !completed.current) {
+    if (results && results.monthlyOpportunity > 0 && !completed.current) {
       completed.current = true;
       trackEvent("calculator_complete", { calculator: "automation_savings" });
     }
-  }, [hasResults]);
+  }, [results]);
 
-  const update = (key: Key, raw: number) => {
+  const markStarted = () => {
     if (!started.current) {
       started.current = true;
       trackEvent("calculator_start", { calculator: "automation_savings" });
     }
-    setInputs((prev) => ({ ...prev, [key]: clampInput(key, raw) }));
+  };
+
+  const setText = (key: Key, text: string) => {
+    markStarted();
+    setDraft((prev) => ({ ...prev, [key]: text }));
+  };
+
+  const setFromSlider = (key: Key, value: number) => {
+    markStarted();
+    setDraft((prev) => ({ ...prev, [key]: String(clampInput(key, value)) }));
+  };
+
+  const blurField = (key: Key) => {
+    setDraft((prev) => {
+      const next = normalize(prev[key]);
+      if (next === "") return prev[key] === "" ? prev : { ...prev, [key]: "" };
+      const n = Number(next);
+      const final = Number.isFinite(n) ? String(clampInput(key, n)) : next;
+      return final === prev[key] ? prev : { ...prev, [key]: final };
+    });
   };
 
   return (
@@ -105,7 +166,14 @@ export function SavingsCalculator() {
       >
         <div className="space-y-7">
           {FIELDS.map((f) => (
-            <Field key={f.key} def={f} value={inputs[f.key]} onChange={update} />
+            <Field
+              key={f.key}
+              def={f}
+              value={draft[f.key]}
+              onChange={setText}
+              onSlide={setFromSlider}
+              onBlur={blurField}
+            />
           ))}
         </div>
 
@@ -123,9 +191,10 @@ export function SavingsCalculator() {
             />
           </button>
           <p className="mt-2 text-sm text-muted-foreground">
-            Estimates assume only {inputs.recoveryPct}% of missed or under-followed leads could
-            realistically be recovered — a deliberately conservative assumption
-            {inputs.recoveryPct !== DEFAULT_RECOVERY_PCT
+            Estimates assume only {recoveryText ?? DEFAULT_RECOVERY_PCT}% of missed or
+            under-followed leads could realistically be recovered — a deliberately conservative
+            assumption
+            {recoveryText !== null && recoveryText !== DEFAULT_RECOVERY_PCT
               ? ` (default is ${DEFAULT_RECOVERY_PCT}%)`
               : ""}
             .
@@ -140,8 +209,10 @@ export function SavingsCalculator() {
                   suffix: "%",
                   slider: true,
                 }}
-                value={inputs.recoveryPct}
-                onChange={update}
+                value={draft.recoveryPct}
+                onChange={setText}
+                onSlide={setFromSlider}
+                onBlur={blurField}
               />
             </div>
           )}
@@ -157,14 +228,20 @@ function Field({
   def,
   value,
   onChange,
+  onSlide,
+  onBlur,
 }: {
   def: FieldDef;
-  value: number;
-  onChange: (key: Key, value: number) => void;
+  value: string;
+  onChange: (key: Key, value: string) => void;
+  onSlide: (key: Key, value: number) => void;
+  onBlur: (key: Key) => void;
 }) {
   const id = `calc-${def.key}`;
   const helpId = `${id}-help`;
   const limits = LIMITS[def.key];
+  const parsedValue = parseField(def.key, value);
+  const invalid = parsedValue === null;
 
   return (
     <div>
@@ -186,14 +263,14 @@ function Field({
           )}
           <input
             id={id}
-            type="number"
+            type="text"
             inputMode="decimal"
-            min={limits.min}
-            max={limits.max}
-            step={limits.step}
-            value={Number.isFinite(value) ? value : ""}
+            autoComplete="off"
+            value={value}
             aria-describedby={helpId}
-            onChange={(e) => onChange(def.key, e.target.valueAsNumber)}
+            aria-invalid={invalid || undefined}
+            onChange={(e) => onChange(def.key, e.target.value)}
+            onBlur={() => onBlur(def.key)}
             className={`no-spinner w-full rounded-xl border border-border bg-background py-2.5 text-sm text-foreground outline-none transition focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/30 ${
               def.prefix ? "pl-7" : "pl-3"
             } ${def.suffix ? "pr-12" : "pr-3"}`}
@@ -214,9 +291,9 @@ function Field({
             min={limits.min}
             max={limits.max}
             step={limits.step}
-            value={value}
+            value={parsedValue ?? limits.min}
             aria-label={`${def.label} slider`}
-            onChange={(e) => onChange(def.key, e.target.valueAsNumber)}
+            onChange={(e) => onSlide(def.key, e.target.valueAsNumber)}
             className="h-1.5 flex-1 cursor-pointer appearance-none rounded-full bg-border accent-primary"
           />
         )}
@@ -225,25 +302,30 @@ function Field({
   );
 }
 
-function Results({ results }: { results: ReturnType<typeof calculate> }) {
-  const rows = [
-    {
-      label: "Estimated missed or under-followed leads each month",
-      value: formatNumber(results.missedLeads, 1),
-    },
-    {
-      label: "Estimated monthly hours potentially saved",
-      value: `${formatNumber(results.hoursSaved, 1)} hrs`,
-    },
-    {
-      label: "Estimated monthly revenue opportunity",
-      value: formatCurrency(results.revenueOpportunity),
-    },
-    {
-      label: "Estimated monthly labor-time value",
-      value: formatCurrency(results.laborValue),
-    },
-  ];
+
+function Results({ results }: { results: ReturnType<typeof calculate> | null }) {
+  const rows = results
+    ? [
+        {
+          label: "Estimated missed or under-followed leads each month",
+          value: formatNumber(results.missedLeads, 1),
+        },
+        {
+          label: "Estimated monthly hours potentially saved",
+          value: `${formatNumber(results.hoursSaved, 1)} hrs`,
+        },
+        {
+          label: "Estimated monthly revenue opportunity",
+          value: formatCurrency(results.revenueOpportunity),
+        },
+        {
+          label: "Estimated monthly labor-time value",
+          value: formatCurrency(results.laborValue),
+        },
+      ]
+    : [];
+
+  const placeholder = "Complete all fields to see your estimate";
 
   return (
     <div className="lg:sticky lg:top-28 lg:self-start">
@@ -254,28 +336,39 @@ function Results({ results }: { results: ReturnType<typeof calculate> }) {
         <h2 className="mt-3 text-2xl text-foreground md:text-3xl">
           Estimated combined monthly opportunity
         </h2>
-        <div
-          className="mt-4 text-4xl font-semibold text-foreground md:text-5xl"
-          aria-live="polite"
-          role="status"
-        >
-          {formatCurrency(results.monthlyOpportunity)}
-        </div>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Estimated annual opportunity:{" "}
-          <span className="font-medium text-foreground">
-            {formatCurrency(results.annualOpportunity)}
-          </span>
-        </p>
-
-        <dl className="mt-8 divide-y divide-border border-y border-border">
-          {rows.map((r) => (
-            <div key={r.label} className="flex items-baseline justify-between gap-6 py-3.5">
-              <dt className="text-sm leading-snug text-muted-foreground">{r.label}</dt>
-              <dd className="shrink-0 text-sm font-medium text-foreground">{r.value}</dd>
+        {results ? (
+          <>
+            <div
+              className="mt-4 text-4xl font-semibold text-foreground md:text-5xl"
+              aria-live="polite"
+              role="status"
+            >
+              {formatCurrency(results.monthlyOpportunity)}
             </div>
-          ))}
-        </dl>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Estimated annual opportunity:{" "}
+              <span className="font-medium text-foreground">
+                {formatCurrency(results.annualOpportunity)}
+              </span>
+            </p>
+          </>
+        ) : (
+          <p className="mt-4 text-sm text-muted-foreground" aria-live="polite" role="status">
+            {placeholder}
+          </p>
+        )}
+
+        {results && (
+          <dl className="mt-8 divide-y divide-border border-y border-border">
+            {rows.map((r) => (
+              <div key={r.label} className="flex items-baseline justify-between gap-6 py-3.5">
+                <dt className="text-sm leading-snug text-muted-foreground">{r.label}</dt>
+                <dd className="shrink-0 text-sm font-medium text-foreground">{r.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+
 
         <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
           These estimates are illustrative and based on the information and assumptions entered.
