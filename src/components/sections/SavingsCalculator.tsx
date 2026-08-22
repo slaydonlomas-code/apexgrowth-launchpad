@@ -175,11 +175,11 @@ function Field({
         {def.help}
       </p>
       <div className="mt-3 flex items-center gap-4">
-        <div className="relative">
+        <div className="relative w-36 shrink-0">
           {def.prefix && (
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground"
+              className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-sm text-muted-foreground"
             >
               {def.prefix}
             </span>
@@ -194,19 +194,20 @@ function Field({
             value={Number.isFinite(value) ? value : ""}
             aria-describedby={helpId}
             onChange={(e) => onChange(def.key, e.target.valueAsNumber)}
-            className={`w-32 rounded-xl border border-border bg-background py-2.5 text-sm text-foreground outline-none transition focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/30 ${
-              def.prefix ? "pl-7 pr-3" : "px-3"
-            }`}
+            className={`no-spinner w-full rounded-xl border border-border bg-background py-2.5 text-sm text-foreground outline-none transition focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/30 ${
+              def.prefix ? "pl-7" : "pl-3"
+            } ${def.suffix ? "pr-12" : "pr-3"}`}
           />
           {def.suffix && (
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground"
+              className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-sm text-muted-foreground"
             >
               {def.suffix}
             </span>
           )}
         </div>
+
         {def.slider && (
           <input
             type="range"
