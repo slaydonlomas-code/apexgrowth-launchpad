@@ -15,6 +15,7 @@ const links = [
 const automationsSubmenu = [
   { href: "/automations", label: "Automations Overview" },
   { href: "/resources/automation-savings-calculator", label: "Automation Savings Calculator" },
+  { href: "/resources/growth-readiness-assessment", label: "Growth Readiness Assessment" },
 ];
 
 export function Header() {
