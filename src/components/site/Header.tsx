@@ -15,6 +15,7 @@ const links = [
 const automationsSubmenu = [
   { href: "/automations", label: "Automations Overview" },
   { href: "/resources/automation-savings-calculator", label: "Automation Savings Calculator" },
+  { href: "/resources/growth-readiness-assessment", label: "Growth Readiness Assessment" },
 ];
 
 export function Header() {
@@ -123,14 +124,6 @@ export function Header() {
                       </a>
                     </li>
                   ))}
-                  <li>
-                    <span className="flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm text-muted-foreground">
-                      AI Growth Audit
-                      <span className="rounded-full bg-green/10 px-2 py-0.5 text-xs font-medium text-green">
-                        Coming Soon
-                      </span>
-                    </span>
-                  </li>
                 </ul>
               </div>
             ) : (
@@ -220,14 +213,6 @@ export function Header() {
                           </a>
                         </li>
                       ))}
-                      <li>
-                        <span className="flex min-h-11 items-center justify-between gap-3 rounded-lg px-2 py-3 text-sm text-muted-foreground">
-                          AI Growth Audit
-                          <span className="rounded-full bg-green/10 px-2 py-0.5 text-xs font-medium text-green">
-                            Coming Soon
-                          </span>
-                        </span>
-                      </li>
                     </ul>
                   </div>
                 ) : (

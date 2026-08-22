@@ -25,6 +25,7 @@ import { Route as AccessibilityStatementRouteImport } from './routes/accessibili
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as AiEmployeesIndexRouteImport } from './routes/ai-employees.index'
+import { Route as ResourcesGrowthReadinessAssessmentRouteImport } from './routes/resources.growth-readiness-assessment'
 import { Route as ResourcesAutomationSavingsCalculatorRouteImport } from './routes/resources.automation-savings-calculator'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as AiEmployeesAiReceptionistRouteImport } from './routes/ai-employees.ai-receptionist'
@@ -109,6 +110,12 @@ const AiEmployeesIndexRoute = AiEmployeesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AiEmployeesRoute,
 } as any)
+const ResourcesGrowthReadinessAssessmentRoute =
+  ResourcesGrowthReadinessAssessmentRouteImport.update({
+    id: '/resources/growth-readiness-assessment',
+    path: '/resources/growth-readiness-assessment',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ResourcesAutomationSavingsCalculatorRoute =
   ResourcesAutomationSavingsCalculatorRouteImport.update({
     id: '/resources/automation-savings-calculator',
@@ -145,6 +152,7 @@ export interface FileRoutesByFullPath {
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/automation-savings-calculator': typeof ResourcesAutomationSavingsCalculatorRoute
+  '/resources/growth-readiness-assessment': typeof ResourcesGrowthReadinessAssessmentRoute
   '/ai-employees/': typeof AiEmployeesIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
@@ -165,6 +173,7 @@ export interface FileRoutesByTo {
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/automation-savings-calculator': typeof ResourcesAutomationSavingsCalculatorRoute
+  '/resources/growth-readiness-assessment': typeof ResourcesGrowthReadinessAssessmentRoute
   '/ai-employees': typeof AiEmployeesIndexRoute
   '/resources': typeof ResourcesIndexRoute
 }
@@ -187,6 +196,7 @@ export interface FileRoutesById {
   '/ai-employees/ai-receptionist': typeof AiEmployeesAiReceptionistRoute
   '/resources/$slug': typeof ResourcesSlugRoute
   '/resources/automation-savings-calculator': typeof ResourcesAutomationSavingsCalculatorRoute
+  '/resources/growth-readiness-assessment': typeof ResourcesGrowthReadinessAssessmentRoute
   '/ai-employees/': typeof AiEmployeesIndexRoute
   '/resources/': typeof ResourcesIndexRoute
 }
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/ai-employees/ai-receptionist'
     | '/resources/$slug'
     | '/resources/automation-savings-calculator'
+    | '/resources/growth-readiness-assessment'
     | '/ai-employees/'
     | '/resources/'
   fileRoutesByTo: FileRoutesByTo
@@ -230,6 +241,7 @@ export interface FileRouteTypes {
     | '/ai-employees/ai-receptionist'
     | '/resources/$slug'
     | '/resources/automation-savings-calculator'
+    | '/resources/growth-readiness-assessment'
     | '/ai-employees'
     | '/resources'
   id:
@@ -251,6 +263,7 @@ export interface FileRouteTypes {
     | '/ai-employees/ai-receptionist'
     | '/resources/$slug'
     | '/resources/automation-savings-calculator'
+    | '/resources/growth-readiness-assessment'
     | '/ai-employees/'
     | '/resources/'
   fileRoutesById: FileRoutesById
@@ -272,6 +285,7 @@ export interface RootRouteChildren {
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   ResourcesSlugRoute: typeof ResourcesSlugRoute
   ResourcesAutomationSavingsCalculatorRoute: typeof ResourcesAutomationSavingsCalculatorRoute
+  ResourcesGrowthReadinessAssessmentRoute: typeof ResourcesGrowthReadinessAssessmentRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
@@ -389,6 +403,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiEmployeesIndexRouteImport
       parentRoute: typeof AiEmployeesRoute
     }
+    '/resources/growth-readiness-assessment': {
+      id: '/resources/growth-readiness-assessment'
+      path: '/resources/growth-readiness-assessment'
+      fullPath: '/resources/growth-readiness-assessment'
+      preLoaderRoute: typeof ResourcesGrowthReadinessAssessmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources/automation-savings-calculator': {
       id: '/resources/automation-savings-calculator'
       path: '/resources/automation-savings-calculator'
@@ -445,6 +466,8 @@ const rootRouteChildren: RootRouteChildren = {
   ResourcesSlugRoute: ResourcesSlugRoute,
   ResourcesAutomationSavingsCalculatorRoute:
     ResourcesAutomationSavingsCalculatorRoute,
+  ResourcesGrowthReadinessAssessmentRoute:
+    ResourcesGrowthReadinessAssessmentRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
 }
 export const routeTree = rootRouteImport
